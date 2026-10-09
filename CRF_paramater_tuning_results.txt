@@ -1,0 +1,35 @@
+c1=0.01 c2=0.01 dev F1=0.8267
+c1=0.01 c2=0.1 dev F1=0.8225
+c1=0.01 c2=0.5 dev F1=0.8134
+c1=0.1 c2=0.01 dev F1=0.8277
+c1=0.1 c2=0.1 dev F1=0.8251
+c1=0.1 c2=0.5 dev F1=0.8148
+c1=0.5 c2=0.01 dev F1=0.8217
+c1=0.5 c2=0.1 dev F1=0.8192
+c1=0.5 c2=0.5 dev F1=0.8097
+Best: c1,c2 = (0.1, 0.01) (dev F1 0.8277)
+Trained in 36.3s (c1=0.1, c2=0.01)
+
+Dev results (entity level, seqeval)
+              precision    recall  f1-score   support
+
+    Chemical     0.9352    0.8309    0.8800      5347
+     Disease     0.8069    0.7217    0.7619      4244
+
+   micro avg     0.8782    0.7826    0.8277      9591
+   macro avg     0.8710    0.7763    0.8210      9591
+weighted avg     0.8784    0.7826    0.8277      9591
+
+Overall P=0.8782 R=0.7826 F1=0.8277
+
+Test results (entity level, seqeval)
+              precision    recall  f1-score   support
+
+    Chemical     0.9194    0.7885    0.8489      5385
+     Disease     0.8002    0.7206    0.7583      4424
+
+   micro avg     0.8642    0.7579    0.8076      9809
+   macro avg     0.8598    0.7546    0.8036      9809
+weighted avg     0.8657    0.7579    0.8081      9809
+
+Overall P=0.8642 R=0.7579 F1=0.8076
