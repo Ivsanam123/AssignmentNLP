@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small\setlength{\tabcolsep}{3.6pt}
+\caption{Entity-level results (exact span and type match). The CRF is trained on the training split only; hyperparameters were chosen on dev and the test set was used for the final numbers.}
+\label{tab:results}
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+ & & \multicolumn{3}{c}{Chemical} & \multicolumn{3}{c}{Disease} & \multicolumn{3}{c}{Overall (micro)} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(lr){9-11}
+Model & Split & P & R & F1 & P & R & F1 & P & R & F1 \\
+\midrule
+Dictionary lookup & test & 0.7389 & 0.6082 & 0.6672 & 0.7719 & 0.6282 & 0.6927 & 0.7537 & 0.6172 & 0.6787 \\
+CRF ($c_1{=}0.1,c_2{=}0.01$) & dev & 0.9352 & 0.8309 & 0.8800 & 0.8069 & 0.7217 & 0.7619 & 0.8782 & 0.7826 & 0.8277 \\
+CRF ($c_1{=}0.1,c_2{=}0.01$) & test & 0.9194 & 0.7885 & 0.8489 & 0.8002 & 0.7206 & 0.7583 & 0.8642 & 0.7579 & 0.8076 \\
+\bottomrule
+\end{tabular}
+\end{table}

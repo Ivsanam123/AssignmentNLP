@@ -1,0 +1,43 @@
+Gold entities: 9809   Predicted entities: 8602
+
+Gold outcomes: {'correct': 7434, 'type error': 55, 'boundary error': 584, 'boundary+type': 38, 'missed': 1698}
+Pred outcomes: {'correct': 7434, 'type error': 55, 'boundary error': 559, 'boundary+type': 36, 'spurious': 518}
+Lenient: {'recall_any_overlap': 0.8269, 'recall_overlap_same_type': 0.8174, 'precision_overlap_same_type': 0.9292}
+
+Recall by length:
+  1                    n= 7718 recall=0.783 missed=1410 boundary=216 type=52
+  2                    n= 1574 recall=0.699 missed=209 boundary=262 type=2
+  3                    n=  387 recall=0.654 missed=48 boundary=85 type=1
+  4+                   n=  130 recall=0.308 missed=31 boundary=59 type=0
+
+Recall by train frequency:
+  unseen (0)           n= 3719 recall=0.498 missed=1411 boundary=404 type=53
+  rare (1-4)           n= 1572 recall=0.794 missed=217 boundary=105 type=2
+  medium (5-19)        n= 2808 recall=0.953 missed=60 boundary=73 type=0
+  frequent (20+)       n= 1710 recall=0.971 missed=10 boundary=40 type=0
+
+Recall by surface form:
+  acronym (e.g. ACE)   n= 1148 recall=0.461 missed=581 boundary=5 type=33
+  contains digit       n=  300 recall=0.740 missed=58 boundary=20 type=0
+  contains hyphen      n=  240 recall=0.842 missed=3 boundary=26 type=9
+  multi-word           n= 1932 recall=0.669 missed=277 boundary=362 type=1
+  single plain word    n= 6189 recall=0.838 missed=779 boundary=209 type=12
+
+Length x seen/unseen:
+  len 1  seen n=5212 R=0.922 | unseen n=2506 R=0.492
+  len 2  seen n= 734 R=0.873 | unseen n= 840 R=0.548
+  len 3  seen n= 140 R=0.936 | unseen n= 247 R=0.494
+  len 4+ seen n=   4 R=1.000 | unseen n= 126 R=0.286
+
+Unseen share of gold: 0.379; share of all errors that are unseen strings: 0.787
+Boundary direction: {'predicted too long (super-span)': 280, 'predicted too short (sub-span)': 294, 'shifted / partial': 10}
+Spurious: 518 (annotated in train somewhere: 125) by type {'Chemical': 222, 'Disease': 296}
+Missed: 1698 (string seen in train: 287) by type {'Chemical': 980, 'Disease': 718}
+Entity confusion ['Chemical', 'Disease', '(none)'] 
+ [[4351   54  980]
+ [  39 3667  718]
+ [ 222  296    0]]
+
+Top missed: [('diazinon', 'Chemical', 18), ('stz', 'Chemical', 18), ('mi', 'Disease', 18), ('pb', 'Chemical', 17), ('cya', 'Chemical', 16), ('etomidate', 'Chemical', 15), ('apap', 'Chemical', 14), ('qt prolongation', 'Disease', 13)]
+Top spurious: [('death', 'Disease', 32), ('ht', 'Disease', 12), ('gap43', 'Chemical', 9), ('decline', 'Chemical', 8), ('deaths', 'Disease', 7), ('cc', 'Chemical', 7), ('psychiatric', 'Disease', 6), ('depressed', 'Disease', 6)]
+Top boundary: [('crack cocaine', 'cocaine', 11), ('sodium chloride', 'isotonic sodium chloride', 7), ('convulsive', 'convulsive seizures', 6), ('seizures', 'convulsive seizures', 6), ('chronic hepatitis b', 'hepatitis b', 6), ('postoperative delirium', 'delirium', 5), ('hit type ii', 'hit', 5), ('corneal ulcers', 'ulcers', 5)]

@@ -1,0 +1,41 @@
+{
+  "train": {
+    "sentences": 5228,
+    "tokens": 109322,
+    "avg_tokens_per_sentence": 20.91,
+    "entity_tokens": 12526,
+    "pct_entity_tokens": 11.46,
+    "sentences_with_entity": 3915,
+    "mentions_total": 9385,
+    "mentions_by_type": {
+      "Chemical": 5203,
+      "Disease": 4182
+    }
+  },
+  "dev": {
+    "sentences": 5330,
+    "tokens": 108958,
+    "avg_tokens_per_sentence": 20.44,
+    "entity_tokens": 12545,
+    "pct_entity_tokens": 11.51,
+    "sentences_with_entity": 3889,
+    "mentions_total": 9591,
+    "mentions_by_type": {
+      "Disease": 4244,
+      "Chemical": 5347
+    }
+  },
+  "test": {
+    "sentences": 5865,
+    "tokens": 116318,
+    "avg_tokens_per_sentence": 19.83,
+    "entity_tokens": 12634,
+    "pct_entity_tokens": 10.86,
+    "sentences_with_entity": 4140,
+    "mentions_total": 9809,
+    "mentions_by_type": {
+      "Chemical": 5385,
+      "Disease": 4424
+    }
+  }
+}

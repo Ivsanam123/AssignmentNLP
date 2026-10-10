@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Outcome of every gold entity and every predicted entity on the test set (exact-match taxonomy).}
+\label{tab:outcomes}
+\begin{tabular}{lrrrr}
+\toprule
+Outcome & Gold entities & \% of gold & Predicted entities & \% of predicted \\
+\midrule
+Correct (exact span and type) & 7434 & 75.8 & 7434 & 86.4 \\
+Boundary error (same type) & 584 & 6.0 & 559 & 6.5 \\
+Boundary + type error & 38 & 0.4 & 36 & 0.4 \\
+Type error (right span) & 55 & 0.6 & 55 & 0.6 \\
+Missed / spurious (no overlap) & 1698 & 17.3 & 518 & 6.0 \\
+\midrule Total & 9809 & 100.0 & 8602 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

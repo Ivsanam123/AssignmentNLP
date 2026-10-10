@@ -1,0 +1,5 @@
+- first we downloaded the dataset (data_pipeline.py)
+- then we trained the dataset using the first baseline (crf_baseline.py)
+- we also checked with an example sentence if it works ie. if the tagging is proper
+- then ran the crf against various parameters, 9 to be exact and then we were able to choose the best one
+- and so your final CRF is c1=0.1, c2=0.01, 100 iterations, with a test F1 of 0.8076 (P 0.864, R 0.758). Chemical is 0.849 and Disease is 0.758. Pick those tuned numbers as your official baseline and use the same model for the error analysis and demo.

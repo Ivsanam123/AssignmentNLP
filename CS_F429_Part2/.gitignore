@@ -1,0 +1,8 @@
+.venv/
+.venv-intel-backup/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+*.pem
+*.key

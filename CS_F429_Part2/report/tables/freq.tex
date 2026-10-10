@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Recall by how often the exact entity string occurs as the same type in the training set.}
+\label{tab:freq}
+\begin{tabular}{lrrrrrr}
+\toprule
+Train count & Gold & Correct & Recall & Missed & Boundary & Type \\
+\midrule
+unseen (0) & 3719 & 1851 & 0.498 & 1411 & 404 & 53 \\
+rare (1-4) & 1572 & 1248 & 0.794 & 217 & 105 & 2 \\
+medium (5-19) & 2808 & 2675 & 0.953 & 60 & 73 & 0 \\
+frequent (20+) & 1710 & 1660 & 0.971 & 10 & 40 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

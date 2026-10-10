@@ -1,0 +1,1022 @@
+{
+  "n_gold": 9809,
+  "n_pred": 8602,
+  "gold_outcomes": {
+    "correct": 7434,
+    "type error": 55,
+    "boundary error": 584,
+    "boundary+type": 38,
+    "missed": 1698
+  },
+  "pred_outcomes": {
+    "correct": 7434,
+    "type error": 55,
+    "boundary error": 559,
+    "boundary+type": 36,
+    "spurious": 518
+  },
+  "gold_outcomes_by_type": {
+    "Chemical": {
+      "correct": 4246,
+      "missed": 980,
+      "boundary error": 105,
+      "type error": 27,
+      "boundary+type": 27
+    },
+    "Disease": {
+      "correct": 3188,
+      "missed": 718,
+      "type error": 28,
+      "boundary error": 479,
+      "boundary+type": 11
+    }
+  },
+  "pred_outcomes_by_type": {
+    "Chemical": {
+      "correct": 4246,
+      "spurious": 222,
+      "type error": 28,
+      "boundary error": 104,
+      "boundary+type": 18
+    },
+    "Disease": {
+      "correct": 3188,
+      "spurious": 296,
+      "boundary error": 455,
+      "type error": 27,
+      "boundary+type": 18
+    }
+  },
+  "lenient": {
+    "recall_any_overlap": 0.8268936690794169,
+    "recall_overlap_same_type": 0.8174125802834132,
+    "precision_overlap_same_type": 0.9292025110439432
+  },
+  "recall_by_length": {
+    "1": {
+      "n": 7718,
+      "correct": 6040,
+      "recall": 0.7825861622181912,
+      "missed": 1410,
+      "boundary": 216,
+      "type_err": 52
+    },
+    "2": {
+      "n": 1574,
+      "correct": 1101,
+      "recall": 0.6994917407878017,
+      "missed": 209,
+      "boundary": 262,
+      "type_err": 2
+    },
+    "3": {
+      "n": 387,
+      "correct": 253,
+      "recall": 0.6537467700258398,
+      "missed": 48,
+      "boundary": 85,
+      "type_err": 1
+    },
+    "4+": {
+      "n": 130,
+      "correct": 40,
+      "recall": 0.3076923076923077,
+      "missed": 31,
+      "boundary": 59,
+      "type_err": 0
+    }
+  },
+  "recall_by_freq": {
+    "unseen (0)": {
+      "n": 3719,
+      "correct": 1851,
+      "recall": 0.4977144393654208,
+      "missed": 1411,
+      "boundary": 404,
+      "type_err": 53
+    },
+    "rare (1-4)": {
+      "n": 1572,
+      "correct": 1248,
+      "recall": 0.7938931297709924,
+      "missed": 217,
+      "boundary": 105,
+      "type_err": 2
+    },
+    "medium (5-19)": {
+      "n": 2808,
+      "correct": 2675,
+      "recall": 0.9526353276353277,
+      "missed": 60,
+      "boundary": 73,
+      "type_err": 0
+    },
+    "frequent (20+)": {
+      "n": 1710,
+      "correct": 1660,
+      "recall": 0.9707602339181286,
+      "missed": 10,
+      "boundary": 40,
+      "type_err": 0
+    }
+  },
+  "recall_by_length_by_type": {
+    "Chemical": {
+      "1": {
+        "n": 5037,
+        "correct": 4030,
+        "recall": 0.8000794123486202,
+        "missed": 939,
+        "boundary": 44,
+        "type_err": 24
+      },
+      "2": {
+        "n": 312,
+        "correct": 203,
+        "recall": 0.6506410256410257,
+        "missed": 35,
+        "boundary": 72,
+        "type_err": 2
+      },
+      "3": {
+        "n": 24,
+        "correct": 10,
+        "recall": 0.4166666666666667,
+        "missed": 4,
+        "boundary": 9,
+        "type_err": 1
+      },
+      "4+": {
+        "n": 12,
+        "correct": 3,
+        "recall": 0.25,
+        "missed": 2,
+        "boundary": 7,
+        "type_err": 0
+      }
+    },
+    "Disease": {
+      "1": {
+        "n": 2681,
+        "correct": 2010,
+        "recall": 0.7497202536367027,
+        "missed": 471,
+        "boundary": 172,
+        "type_err": 28
+      },
+      "2": {
+        "n": 1262,
+        "correct": 898,
+        "recall": 0.7115689381933439,
+        "missed": 174,
+        "boundary": 190,
+        "type_err": 0
+      },
+      "3": {
+        "n": 363,
+        "correct": 243,
+        "recall": 0.6694214876033058,
+        "missed": 44,
+        "boundary": 76,
+        "type_err": 0
+      },
+      "4+": {
+        "n": 118,
+        "correct": 37,
+        "recall": 0.3135593220338983,
+        "missed": 29,
+        "boundary": 52,
+        "type_err": 0
+      }
+    }
+  },
+  "recall_by_freq_by_type": {
+    "Chemical": {
+      "unseen (0)": {
+        "n": 2099,
+        "correct": 1126,
+        "recall": 0.5364459266317294,
+        "missed": 847,
+        "boundary": 99,
+        "type_err": 27
+      },
+      "rare (1-4)": {
+        "n": 720,
+        "correct": 594,
+        "recall": 0.825,
+        "missed": 105,
+        "boundary": 21,
+        "type_err": 0
+      },
+      "medium (5-19)": {
+        "n": 1520,
+        "correct": 1488,
+        "recall": 0.9789473684210527,
+        "missed": 23,
+        "boundary": 9,
+        "type_err": 0
+      },
+      "frequent (20+)": {
+        "n": 1046,
+        "correct": 1038,
+        "recall": 0.9923518164435946,
+        "missed": 5,
+        "boundary": 3,
+        "type_err": 0
+      }
+    },
+    "Disease": {
+      "unseen (0)": {
+        "n": 1620,
+        "correct": 725,
+        "recall": 0.44753086419753085,
+        "missed": 564,
+        "boundary": 305,
+        "type_err": 26
+      },
+      "rare (1-4)": {
+        "n": 852,
+        "correct": 654,
+        "recall": 0.7676056338028169,
+        "missed": 112,
+        "boundary": 84,
+        "type_err": 2
+      },
+      "medium (5-19)": {
+        "n": 1288,
+        "correct": 1187,
+        "recall": 0.921583850931677,
+        "missed": 37,
+        "boundary": 64,
+        "type_err": 0
+      },
+      "frequent (20+)": {
+        "n": 664,
+        "correct": 622,
+        "recall": 0.9367469879518072,
+        "missed": 5,
+        "boundary": 37,
+        "type_err": 0
+      }
+    }
+  },
+  "recall_by_surface": {
+    "acronym (e.g. ACE)": {
+      "n": 1148,
+      "correct": 529,
+      "recall": 0.460801393728223,
+      "missed": 581,
+      "boundary": 5,
+      "type_err": 33
+    },
+    "contains digit": {
+      "n": 300,
+      "correct": 222,
+      "recall": 0.74,
+      "missed": 58,
+      "boundary": 20,
+      "type_err": 0
+    },
+    "contains hyphen": {
+      "n": 240,
+      "correct": 202,
+      "recall": 0.8416666666666667,
+      "missed": 3,
+      "boundary": 26,
+      "type_err": 9
+    },
+    "multi-word": {
+      "n": 1932,
+      "correct": 1292,
+      "recall": 0.6687370600414079,
+      "missed": 277,
+      "boundary": 362,
+      "type_err": 1
+    },
+    "single plain word": {
+      "n": 6189,
+      "correct": 5189,
+      "recall": 0.8384230085635805,
+      "missed": 779,
+      "boundary": 209,
+      "type_err": 12
+    }
+  },
+  "recall_length_seen": {
+    "1": {
+      "n": 5212,
+      "correct": 4807,
+      "recall": 0.9222947045280123,
+      "missed": 257,
+      "boundary": 146,
+      "type_err": 2
+    },
+    "2": {
+      "n": 734,
+      "correct": 641,
+      "recall": 0.8732970027247956,
+      "missed": 27,
+      "boundary": 66,
+      "type_err": 0
+    },
+    "3": {
+      "n": 140,
+      "correct": 131,
+      "recall": 0.9357142857142857,
+      "missed": 3,
+      "boundary": 6,
+      "type_err": 0
+    },
+    "4+": {
+      "n": 4,
+      "correct": 4,
+      "recall": 1.0,
+      "missed": 0,
+      "boundary": 0,
+      "type_err": 0
+    }
+  },
+  "recall_length_unseen": {
+    "1": {
+      "n": 2506,
+      "correct": 1233,
+      "recall": 0.4920191540303272,
+      "missed": 1153,
+      "boundary": 70,
+      "type_err": 50
+    },
+    "2": {
+      "n": 840,
+      "correct": 460,
+      "recall": 0.5476190476190477,
+      "missed": 182,
+      "boundary": 196,
+      "type_err": 2
+    },
+    "3": {
+      "n": 247,
+      "correct": 122,
+      "recall": 0.4939271255060729,
+      "missed": 45,
+      "boundary": 79,
+      "type_err": 1
+    },
+    "4+": {
+      "n": 126,
+      "correct": 36,
+      "recall": 0.2857142857142857,
+      "missed": 31,
+      "boundary": 59,
+      "type_err": 0
+    }
+  },
+  "share_unseen": 0.37914160464879193,
+  "share_of_misses_unseen": 0.7865263157894736,
+  "length_distribution": {
+    "1": 7718,
+    "2": 1574,
+    "3": 387,
+    "4+": 130
+  },
+  "precision_by_length": {
+    "1": {
+      "n": 6699,
+      "precision": 0.9016271085236602
+    },
+    "2": {
+      "n": 1415,
+      "precision": 0.7780918727915195
+    },
+    "3": {
+      "n": 368,
+      "precision": 0.6875
+    },
+    "4+": {
+      "n": 120,
+      "precision": 0.3333333333333333
+    }
+  },
+  "token_confusion_labels": [
+    "O",
+    "B-Chemical",
+    "I-Chemical",
+    "B-Disease",
+    "I-Disease"
+  ],
+  "token_confusion": [
+    [
+      102587,
+      236,
+      45,
+      466,
+      350
+    ],
+    [
+      1011,
+      4299,
+      23,
+      43,
+      9
+    ],
+    [
+      109,
+      35,
+      249,
+      2,
+      6
+    ],
+    [
+      911,
+      39,
+      0,
+      3271,
+      203
+    ],
+    [
+      500,
+      5,
+      6,
+      200,
+      1713
+    ]
+  ],
+  "entity_confusion_labels": [
+    "Chemical",
+    "Disease",
+    "(none)"
+  ],
+  "entity_confusion": [
+    [
+      4351,
+      54,
+      980
+    ],
+    [
+      39,
+      3667,
+      718
+    ],
+    [
+      222,
+      296,
+      0
+    ]
+  ],
+  "top_missed": [
+    {
+      "text": "diazinon",
+      "type": "Chemical",
+      "count": 18
+    },
+    {
+      "text": "stz",
+      "type": "Chemical",
+      "count": 18
+    },
+    {
+      "text": "mi",
+      "type": "Disease",
+      "count": 18
+    },
+    {
+      "text": "pb",
+      "type": "Chemical",
+      "count": 17
+    },
+    {
+      "text": "cya",
+      "type": "Chemical",
+      "count": 16
+    },
+    {
+      "text": "etomidate",
+      "type": "Chemical",
+      "count": 15
+    },
+    {
+      "text": "apap",
+      "type": "Chemical",
+      "count": 14
+    },
+    {
+      "text": "qt prolongation",
+      "type": "Disease",
+      "count": 13
+    },
+    {
+      "text": "cyp",
+      "type": "Chemical",
+      "count": 12
+    },
+    {
+      "text": "gtn",
+      "type": "Chemical",
+      "count": 12
+    },
+    {
+      "text": "hctz",
+      "type": "Chemical",
+      "count": 12
+    },
+    {
+      "text": "contrast",
+      "type": "Chemical",
+      "count": 11
+    },
+    {
+      "text": "bs",
+      "type": "Chemical",
+      "count": 11
+    },
+    {
+      "text": "rls",
+      "type": "Disease",
+      "count": 11
+    },
+    {
+      "text": "val",
+      "type": "Chemical",
+      "count": 11
+    }
+  ],
+  "top_spurious": [
+    {
+      "text": "death",
+      "type": "Disease",
+      "count": 32
+    },
+    {
+      "text": "ht",
+      "type": "Disease",
+      "count": 12
+    },
+    {
+      "text": "gap43",
+      "type": "Chemical",
+      "count": 9
+    },
+    {
+      "text": "decline",
+      "type": "Chemical",
+      "count": 8
+    },
+    {
+      "text": "deaths",
+      "type": "Disease",
+      "count": 7
+    },
+    {
+      "text": "cc",
+      "type": "Chemical",
+      "count": 7
+    },
+    {
+      "text": "psychiatric",
+      "type": "Disease",
+      "count": 6
+    },
+    {
+      "text": "depressed",
+      "type": "Disease",
+      "count": 6
+    },
+    {
+      "text": "antidepressants",
+      "type": "Chemical",
+      "count": 5
+    },
+    {
+      "text": "canine",
+      "type": "Chemical",
+      "count": 5
+    },
+    {
+      "text": "se",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "text": "antidepressant",
+      "type": "Chemical",
+      "count": 5
+    },
+    {
+      "text": "urothelium",
+      "type": "Chemical",
+      "count": 4
+    },
+    {
+      "text": "epithelium",
+      "type": "Chemical",
+      "count": 4
+    },
+    {
+      "text": "motor fluctuations",
+      "type": "Disease",
+      "count": 3
+    }
+  ],
+  "top_boundary": [
+    {
+      "gold": "crack cocaine",
+      "pred": "cocaine",
+      "type": "Chemical",
+      "count": 11
+    },
+    {
+      "gold": "sodium chloride",
+      "pred": "isotonic sodium chloride",
+      "type": "Chemical",
+      "count": 7
+    },
+    {
+      "gold": "convulsive",
+      "pred": "convulsive seizures",
+      "type": "Disease",
+      "count": 6
+    },
+    {
+      "gold": "seizures",
+      "pred": "convulsive seizures",
+      "type": "Disease",
+      "count": 6
+    },
+    {
+      "gold": "chronic hepatitis b",
+      "pred": "hepatitis b",
+      "type": "Disease",
+      "count": 6
+    },
+    {
+      "gold": "postoperative delirium",
+      "pred": "delirium",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "hit type ii",
+      "pred": "hit",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "corneal ulcers",
+      "pred": "ulcers",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "downbeat nystagmus",
+      "pred": "nystagmus",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "leukocyturia",
+      "pred": "sterile leukocyturia",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "niacin extended-release/lovastatin",
+      "pred": "niacin",
+      "type": "Chemical",
+      "count": 5
+    },
+    {
+      "gold": "vocal cord paralysis",
+      "pred": "paralysis",
+      "type": "Disease",
+      "count": 5
+    },
+    {
+      "gold": "atrophy",
+      "pred": "tubular atrophy",
+      "type": "Disease",
+      "count": 4
+    },
+    {
+      "gold": "left ventricular dysfunction",
+      "pred": "ventricular dysfunction",
+      "type": "Disease",
+      "count": 4
+    },
+    {
+      "gold": "sinus bradycardia",
+      "pred": "bradycardia",
+      "type": "Disease",
+      "count": 4
+    }
+  ],
+  "boundary_direction": {
+    "predicted too long (super-span)": 280,
+    "predicted too short (sub-span)": 294,
+    "shifted / partial": 10
+  },
+  "spurious_total": 518,
+  "spurious_string_annotated_in_train": 125,
+  "spurious_by_type": {
+    "Chemical": 222,
+    "Disease": 296
+  },
+  "missed_total": 1698,
+  "missed_string_seen_in_train": 287,
+  "missed_by_type": {
+    "Chemical": 980,
+    "Disease": 718
+  },
+  "annotation_probe": {
+    "death": {
+      "train_occurrences": 32,
+      "train_annotated": 26,
+      "test_occurrences": 42,
+      "test_annotated": 0
+    },
+    "deaths": {
+      "train_occurrences": 7,
+      "train_annotated": 6,
+      "test_occurrences": 7,
+      "test_annotated": 0
+    },
+    "pain": {
+      "train_occurrences": 129,
+      "train_annotated": 87,
+      "test_occurrences": 83,
+      "test_annotated": 45
+    },
+    "hypertension": {
+      "train_occurrences": 67,
+      "train_annotated": 55,
+      "test_occurrences": 84,
+      "test_annotated": 63
+    },
+    "mi": {
+      "train_occurrences": 0,
+      "train_annotated": 0,
+      "test_occurrences": 19,
+      "test_annotated": 19
+    },
+    "stz": {
+      "train_occurrences": 0,
+      "train_annotated": 0,
+      "test_occurrences": 25,
+      "test_annotated": 25
+    },
+    "apap": {
+      "train_occurrences": 0,
+      "train_annotated": 0,
+      "test_occurrences": 14,
+      "test_annotated": 14
+    }
+  },
+  "examples": {
+    "missed": [
+      {
+        "text": "trimethoprim",
+        "type": "Chemical",
+        "gold": "2 / 100 , 000 ) and those prescribed [trimethoprim]_CHE alone ( 3 .",
+        "pred": "2 / 100 , 000 ) and those prescribed trimethoprim alone ( 3 ."
+      },
+      {
+        "text": "LOS",
+        "type": "Chemical",
+        "gold": "Groups [ADR]_CHE ( 6 ), [ADR]_CHE + [LOS]_CHE ( 6 ) and [ADR]_CHE ( 12 ), and [ADR]_CHE + [LOS]_CHE ( 12 ) received [ADR]_CHE ( 2 mg / kg / b .",
+        "pred": "Groups [ADR]_CHE ( 6 ), [ADR]_CHE + LOS ( 6 ) and [ADR]_CHE ( 12 ), and [ADR]_CHE + LOS ( 12 ) received [ADR]_CHE ( 2 mg / kg / b ."
+      },
+      {
+        "text": "thyrotropin",
+        "type": "Chemical",
+        "gold": "Human [corticotropin]_CHE - releasing hormone and [thyrotropin]_CHE - releasing hormone modulate the [hypercapnic]_DIS ventilatory response in humans .",
+        "pred": "Human corticotropin - releasing hormone and thyrotropin - releasing hormone modulate the hypercapnic ventilatory response in humans ."
+      },
+      {
+        "text": "diazinon",
+        "type": "Chemical",
+        "gold": "5 and 25mg / kg per day , intraperitoneally ) in combination with [diazinon]_CHE ( 15 mg / kg ). The levels of [cholesterol]_CHE , [triglyceride]_CHE and LDL in blood of rats were analyzed .",
+        "pred": "5 and 25mg / kg per day , intraperitoneally ) in combination with diazinon ( 15 mg / kg ). The levels of [cholesterol]_CHE , [triglyceride]_CHE and LDL in blood of rats were analyzed ."
+      },
+      {
+        "text": "hypercalcemic",
+        "type": "Disease",
+        "gold": "0 mg / dL ), patients in the [hypercalcemic]_DIS group exhibited a significant increase in the mean [calcium]_CHE concentration obtained during 6 months before the switch , compared with the mean value obtained during the 7 months of observation after the switch ( 2 .",
+        "pred": "0 mg / dL ), patients in the hypercalcemic group exhibited a significant increase in the mean [calcium]_CHE concentration obtained during 6 months before the switch , compared with the mean value obtained during the 7 months of observation after the switch ( 2 ."
+      },
+      {
+        "text": "subependymal cysts",
+        "type": "Disease",
+        "gold": "The incidence of [subependymal cysts]_DIS in the 117 remaining infants was 14 %( 16 of 117 ). The incidence of [subependymal cysts]_DIS in infants exposed to [cocaine]_CHE prenatally was 44 %( 8 of 18 ) compared with 8 %( 8 of 99 ) in the unexposed group ( p < 0 .",
+        "pred": "The incidence of subependymal cysts in the 117 remaining infants was 14 %( 16 of 117 ). The incidence of subependymal cysts in infants exposed to [cocaine]_CHE prenatally was 44 %( 8 of 18 ) compared with 8 %( 8 of 99 ) in the unexposed group ( p < 0 ."
+      },
+      {
+        "text": "paclitaxel",
+        "type": "Chemical",
+        "gold": "Phase 2 trial of liposomal [doxorubicin]_CHE ( 40 mg / m ( 2 )) in [platinum]_CHE / [paclitaxel]_CHE - refractory [ovarian and fallopian tube cancers]_DIS and primary [carcinoma of the peritoneum]_DIS .",
+        "pred": "Phase 2 trial of liposomal [doxorubicin]_CHE ( 40 mg / m ( 2 )) in platinum / paclitaxel - refractory [ovarian and fallopian tube cancers]_DIS and [primary carcinoma]_DIS of the peritoneum ."
+      },
+      {
+        "text": "clentiazem",
+        "type": "Chemical",
+        "gold": "[Clentiazem]_CHE also did not prevent the enhanced responses to [calcium]_CHE seen in the [epinephrine]_CHE - treated animals , although the high dose of [clentiazem]_CHE partially attenuated the maximal response to [calcium]_CHE compared to [epinephrine]_CHE - treated animals .",
+        "pred": "Clentiazem also did not prevent the enhanced responses to [calcium]_CHE seen in the [epinephrine]_CHE - treated animals , although the high dose of clentiazem partially attenuated the maximal response to [calcium]_CHE compared to [epinephrine]_CHE - treated animals ."
+      },
+      {
+        "text": "FHF",
+        "type": "Disease",
+        "gold": "BACKGROUND : To review evidence - based treatment options in patients with [cerebral edema]_DIS complicating [fulminant hepatic failure]_DIS ( [FHF]_DIS ) and discuss the potential applications of [hypothermia]_DIS .",
+        "pred": "BACKGROUND : To review evidence - based treatment options in patients with [cerebral edema]_DIS complicating [fulminant hepatic failure]_DIS ( FHF ) and discuss the potential applications of [hypothermia]_DIS ."
+      },
+      {
+        "text": "bradycardiac",
+        "type": "Disease",
+        "gold": "Furthermore , selective destruction of the spinal [5-HT]_CHE nerves , produced by bilateral spinal injection of [5,7-dihydroxytryptamine]_CHE , reduced the magnitude of the vasodepressor or the [bradycardiac]_DIS responses to [clonidine]_CHE microinjected into the area near the ventrolateral surface of the medulla oblongata in rats .",
+        "pred": "Furthermore , selective destruction of the spinal [5-HT]_CHE nerves , produced by bilateral spinal injection of [5,7-dihydroxytryptamine]_CHE , reduced the magnitude of the vasodepressor or the bradycardiac responses to [clonidine]_CHE microinjected into the area near the ventrolateral surface of the medulla oblongata in rats ."
+      }
+    ],
+    "boundary error": [
+      {
+        "text": "zinc acetate",
+        "type": "Chemical",
+        "gold": "In our case the therapy with [zinc acetate]_CHE represented an effective treatment for a [Wilson's disease]_DIS patient in which [penicillamine]_CHE - related side effects appeared .",
+        "pred": "In our case the therapy with zinc [acetate]_CHE represented an effective treatment for a [Wilson's disease]_DIS patient in which [penicillamine]_CHE - related side effects appeared ."
+      },
+      {
+        "text": "depression",
+        "type": "Disease",
+        "gold": "53 ) or ST [depression]_DIS ( p = 0 .",
+        "pred": "53 ) or [ST depression]_DIS ( p = 0 ."
+      },
+      {
+        "text": "edema",
+        "type": "Disease",
+        "gold": "Fully developed [cyclophosphamide]_CHE - induced [cystitis]_DIS is characterized by nearly complete detachment of the urothelium , severe submucosal [edema]_DIS owing to damage to the microvascular bed and focal muscle [necroses]_DIS .",
+        "pred": "Fully developed [cyclophosphamide]_CHE - induced [cystitis]_DIS is characterized by nearly complete detachment of the [urothelium]_CHE , severe [submucosal edema]_DIS owing to damage to the microvascular bed and [focal muscle necroses]_DIS ."
+      },
+      {
+        "text": "chronic hepatitis B",
+        "type": "Disease",
+        "gold": "In this study we aimed to determine the rate of YMDD motif mutants in [lamivudine]_CHE - untreated [chronic hepatitis B]_DIS patients in Iran .",
+        "pred": "In this study we aimed to determine the rate of YMDD motif mutants in [lamivudine]_CHE - untreated chronic [hepatitis B]_DIS patients in Iran ."
+      },
+      {
+        "text": "obstructive uropathy",
+        "type": "Disease",
+        "gold": "Patients who are candidates for long - term [cyclophosphamide]_CHE treatment should be routinely evaluated for [obstructive uropathy]_DIS",
+        "pred": "Patients who are candidates for long - term [cyclophosphamide]_CHE treatment should be routinely evaluated for obstructive [uropathy]_DIS"
+      },
+      {
+        "text": "Vasurix polyvidone",
+        "type": "Chemical",
+        "gold": "[Hexabrix]_CHE and [Vasurix polyvidone]_CHE are considered the best [contrast media]_CHE for hysterosalpingography and perhaps because of its low [toxicity]_DIS [Hexabrix]_CHE",
+        "pred": "Hexabrix and Vasurix [polyvidone]_CHE are considered the best contrast media for [hysterosalpingography]_DIS and perhaps because of its low [toxicity]_DIS Hexabrix"
+      },
+      {
+        "text": "hyper- or hypotension",
+        "type": "Disease",
+        "gold": "Dosage groups of 15 , 30 , 50 , 75 , 100 , 125 , 150 , 175 or 200 microg [carbetocin]_CHE were assigned to blocks of three women according to the continual reassessment method ( CRM ). RESULTS : All dosage groups consisted of three women , except those with 100 microg ( n = 6 ) and 200 microg ( n = 18 ). Recorded were dose - limiting adverse events : [hyper- or hypotension]_DIS ( three ), severe [abdominal pain]_DIS ( 0 ), [vomiting]_DIS ( 0 ) and [retained placenta]_DIS ( four ). Serious adverse events occurred in seven women : six cases with [blood loss]_DIS > or = 1000 ml , four cases of manual placenta removal , five cases of additional oxytocics administration and five cases of blood transfusion .",
+        "pred": "Dosage groups of 15 , 30 , 50 , 75 , 100 , 125 , 150 , 175 or 200 microg [carbetocin]_CHE were assigned to blocks of three women according to the continual reassessment method ( CRM ). RESULTS : All dosage groups consisted of three women , except those with 100 microg ( n = 6 ) and 200 microg ( n = 18 ). Recorded were dose - limiting adverse events : [hyper-]_DIS or [hypotension]_DIS ( three ), severe [abdominal pain]_DIS ( 0 ), [vomiting]_DIS ( 0 ) and retained placenta ( four ). Serious adverse events occurred in seven women : six cases with [blood loss]_DIS > or = 1000 ml , four cases of manual placenta removal , five cases of additional oxytocics administration and five cases of blood transfusion ."
+      },
+      {
+        "text": "Renal Toxicity",
+        "type": "Disease",
+        "gold": "Rates of [Renal Toxicity]_DIS in [Cancer]_DIS Patients Receiving [Cisplatin]_CHE With and Without [Mannitol]_CHE .",
+        "pred": "Rates of Renal [Toxicity]_DIS in [Cancer]_DIS Patients Receiving [Cisplatin]_CHE With and Without [Mannitol]_CHE ."
+      },
+      {
+        "text": "PGF2 alpha",
+        "type": "Chemical",
+        "gold": "05 ). [PGF2 alpha]_CHE was also significantly higher in the outer medulla of jj rats with and without [aspirin]_CHE administration ( p less than 0 .",
+        "pred": "05 ). [PGF2]_CHE alpha was also significantly higher in the outer medulla of jj rats with and without [aspirin]_CHE administration ( p less than 0 ."
+      },
+      {
+        "text": "rapamycin",
+        "type": "Chemical",
+        "gold": "[Sirolimus]_CHE , a mammalian target of [rapamycin]_CHE inhibitor , has been implicated as playing a special role in posttransplant [anemia]_DIS .",
+        "pred": "[Sirolimus]_CHE , a mammalian target of [rapamycin inhibitor]_CHE , has been implicated as playing a special role in posttransplant [anemia]_DIS ."
+      }
+    ],
+    "type error": [
+      {
+        "text": "CM",
+        "type": "Chemical",
+        "gold": "014 ). This difference was not related to either a different clinical risk profile or to the volume of [CM]_CHE administered .",
+        "pred": "014 ). This difference was not related to either a different clinical risk profile or to the volume of [CM]_DIS administered ."
+      },
+      {
+        "text": "galactose",
+        "type": "Chemical",
+        "gold": "Beneficial effect of oral [galactose]_CHE was independent of the rat age and of the [galactose]_CHE dose ranging from 100 to 300 mg / kg / day .",
+        "pred": "Beneficial effect of oral [galactose]_DIS was independent of the rat age and of the [galactose]_DIS dose ranging from 100 to 300 mg / kg / day ."
+      },
+      {
+        "text": "polyethylene glycol-asparaginase",
+        "type": "Chemical",
+        "gold": "[Vincristine]_CHE , [dexamethasone]_CHE , and [polyethylene glycol-asparaginase]_CHE",
+        "pred": "[Vincristine]_CHE , [dexamethasone]_CHE , and [polyethylene glycol-asparaginase]_DIS"
+      },
+      {
+        "text": "OIH",
+        "type": "Disease",
+        "gold": "Our data suggested that the [ginsenoside Re]_CHE , but not [Rg1]_CHE or [Rb1]_CHE , may contribute toward reversal of [OIH]_DIS",
+        "pred": "Our data suggested that the [ginsenoside]_CHE Re , but not [Rg1]_CHE or Rb1 , may contribute toward reversal of [OIH]_CHE"
+      },
+      {
+        "text": "ANT-MI",
+        "type": "Disease",
+        "gold": "Exercise - induced ST [depression]_DIS was observed in 84 % of the non - [MI]_DIS group , 43 % of the [ANT-MI]_DIS group , 38 % of the [INF-MI]_DIS group and 61 % of the total .",
+        "pred": "Exercise - induced ST [depression]_DIS was observed in 84 % of the non - MI group , 43 % of the [ANT-MI]_CHE group , 38 % of the [INF-MI]_CHE group and 61 % of the total ."
+      },
+      {
+        "text": "TNA",
+        "type": "Chemical",
+        "gold": "Thus , the precipitating cause of [convulsions]_DIS was believed to be an [overdose]_DIS of [TNA]_CHE",
+        "pred": "Thus , the precipitating cause of [convulsions]_DIS was believed to be an [overdose]_DIS of [TNA]_DIS"
+      },
+      {
+        "text": "CM",
+        "type": "Chemical",
+        "gold": "CONCLUSION : In this preliminary study patients submitted to PTRA showed a lower susceptibility to [renal damage]_DIS induced by [CM]_CHE administration than PCI patients .",
+        "pred": "CONCLUSION : In this preliminary study patients submitted to PTRA showed a lower susceptibility to [renal damage]_DIS induced by [CM]_DIS administration than PCI patients ."
+      },
+      {
+        "text": "XDR-TB",
+        "type": "Disease",
+        "gold": "A 45 - year - old male patient who was on treatment with multiple second - line anti - tuberculous drugs including [linezolid]_CHE and [ethambutol]_CHE for [extensively drug-resistant tuberculosis]_DIS ( [XDR-TB]_DIS ) presented to us with painless progressive [loss of vision]_DIS in both eyes .",
+        "pred": "A 45 - year - old male patient who was on treatment with multiple second - line anti - tuberculous drugs including linezolid and [ethambutol]_CHE for extensively [drug-resistant tuberculosis]_DIS ( [XDR-TB]_CHE ) presented to us with [painless]_DIS progressive [loss of vision]_DIS in both eyes ."
+      },
+      {
+        "text": "CM",
+        "type": "Chemical",
+        "gold": "BACKGROUND : [Renal dysfunction]_DIS induced by iodinated [contrast medium]_CHE ( [CM]_CHE ) administration can minimize the benefit of the interventional procedure in patients undergoing renal angioplasty ( PTRA ). PURPOSE : To compare the susceptibility to [nephrotoxic]_DIS effect of [CM]_CHE in patients undergoing PTRA with that of patients submitted to percutaneous coronary intervention ( PCI ). MATERIAL AND METHODS : A total of 33 patients successfully treated with PTRA ( PTRA group , mean age 70 +/- 12 years , 23 female , basal [creatinine]_CHE 1 .",
+        "pred": "BACKGROUND : [Renal dysfunction]_DIS induced by [iodinated contrast medium]_CHE ( [CM]_DIS ) administration can minimize the benefit of the interventional procedure in patients undergoing renal angioplasty ( PTRA ). PURPOSE : To compare the susceptibility to [nephrotoxic]_DIS effect of [CM]_DIS in patients undergoing PTRA with that of patients submitted to percutaneous coronary intervention ( PCI ). MATERIAL AND METHODS : A total of 33 patients successfully treated with [PTRA]_CHE ( PTRA group , mean age 70 +/- 12 years , 23 female , basal [creatinine]_CHE 1 ."
+      },
+      {
+        "text": "MP",
+        "type": "Chemical",
+        "gold": "Careful observation of patients receiving high - dose [MP]_CHE is recommended .",
+        "pred": "Careful observation of patients receiving high - dose [MP]_DIS is recommended ."
+      }
+    ],
+    "spurious": [
+      {
+        "text": "depressed",
+        "type": "Disease",
+        "gold": "The patient had depressed of mental status lasting at least 24 h prior to admission .",
+        "pred": "The patient had [depressed]_DIS of mental status lasting at least 24 h prior to admission ."
+      },
+      {
+        "text": "tachyphylaxis",
+        "type": "Disease",
+        "gold": "The purpose of the present study was to investigate whether tachyphylaxis occurs during prolonged treatment with high dose inhaled [salbutamol]_CHE .",
+        "pred": "The purpose of the present study was to investigate whether [tachyphylaxis]_DIS occurs during prolonged treatment with high dose inhaled [salbutamol]_CHE ."
+      },
+      {
+        "text": "AM149",
+        "type": "Chemical",
+        "gold": "001 ) occurred more frequently with AM149 than with [Disoprivan]_CHE .",
+        "pred": "001 ) occurred more frequently with [AM149]_CHE than with Disoprivan ."
+      },
+      {
+        "text": "volume loading",
+        "type": "Disease",
+        "gold": "Acute [heart failure]_DIS was induced by [propranolol]_CHE and volume loading after weaning from cardiopulmonary bypass ; an absence of [MR]_DIS was confirmed by echocardiography .",
+        "pred": "Acute [heart failure]_DIS was induced by [propranolol]_CHE and [volume loading]_DIS after weaning from [cardiopulmonary bypass]_DIS ; an absence of [MR]_DIS was confirmed by echocardiography ."
+      },
+      {
+        "text": "canine",
+        "type": "Chemical",
+        "gold": "Although both dl - [sotalol]_CHE and [azimilide]_CHE rarely induced EADs in canine left ventricles , they produced frequent EADs in rabbits , in which more pronounced [QT prolongation]_DIS was seen .",
+        "pred": "Although both dl - [sotalol]_CHE and [azimilide]_CHE rarely induced EADs in [canine]_CHE left ventricles , they produced frequent EADs in rabbits , in which more pronounced QT prolongation was seen ."
+      },
+      {
+        "text": "myocardial energy",
+        "type": "Disease",
+        "gold": "Similarly , significant disturbances in myocardial energy metabolism were detected in the [barium]_CHE - exposed rats which were consistent with the reduced contractile element shortening velocity .",
+        "pred": "Similarly , significant disturbances in [myocardial energy]_DIS metabolism were detected in the [barium]_CHE - exposed rats which were consistent with the reduced contractile element shortening velocity ."
+      },
+      {
+        "text": "liver enlargement",
+        "type": "Disease",
+        "gold": "This study investigates the role of ILK in liver enlargement induced by [phenobarbital]_CHE ( [PB]_CHE ). Wild - type ( WT ) and ILK : liver -/- mice were given [PB]_CHE ( 0 .",
+        "pred": "This study investigates the role of ILK in [liver enlargement]_DIS induced by [phenobarbital]_CHE ( PB ). Wild - type ( WT ) and ILK : liver -/- mice were given PB ( 0 ."
+      },
+      {
+        "text": "death",
+        "type": "Disease",
+        "gold": "Alternatively , [anemia]_DIS could result from accelerated suicidal erythrocyte death or eryptosis , which is characterized by exposure of [phosphatidylserine]_CHE ( [PS]_CHE ) at the erythrocyte surface and by cell shrinkage .",
+        "pred": "Alternatively , [anemia]_DIS could result from accelerated suicidal erythrocyte [death]_DIS or [eryptosis]_DIS , which is characterized by exposure of [phosphatidylserine]_CHE ( PS ) at the erythrocyte surface and by cell shrinkage ."
+      },
+      {
+        "text": "antidepressant",
+        "type": "Chemical",
+        "gold": "The correlation between high serum tricyclic antidepressant concentrations and central nervous system side effects has been well established .",
+        "pred": "The correlation between high serum tricyclic [antidepressant]_CHE concentrations and central nervous system side effects has been well established ."
+      },
+      {
+        "text": "glucocorticoid",
+        "type": "Chemical",
+        "gold": "Here , we developed a murine model of glucocorticoid - induced [glaucoma]_DIS that exhibits [glaucoma]_DIS features that are observed in patients .",
+        "pred": "Here , we developed a murine model of [glucocorticoid]_CHE - induced [glaucoma]_DIS that exhibits [glaucoma]_DIS features that are observed in patients ."
+      }
+    ]
+  }
+}
