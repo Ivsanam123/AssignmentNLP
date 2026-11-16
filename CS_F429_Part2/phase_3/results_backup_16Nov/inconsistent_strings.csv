@@ -1,0 +1,16 @@
+string,occurrences,chemical,disease,unannotated,partial,annotated_rate,kind
+pd,23,0,18,5,0,0.783,annotated-or-not
+salt,23,5,0,18,0,0.217,annotated-or-not
+k,19,13,0,4,2,0.765,annotated-or-not
+se,18,0,10,8,0,0.556,annotated-or-not
+smoking,15,9,0,6,0,0.6,annotated-or-not
+sd,14,0,4,10,0,0.286,annotated-or-not
+mr,11,0,3,8,0,0.273,annotated-or-not
+tg,11,0,8,3,0,0.727,annotated-or-not
+cm,10,0,3,7,0,0.3,annotated-or-not
+corticosteroids,10,4,0,6,0,0.4,annotated-or-not
+pg,9,6,0,3,0,0.667,annotated-or-not
+weakness,9,0,3,3,3,0.5,annotated-or-not
+lid,8,0,5,2,1,0.714,annotated-or-not
+drowsiness,6,0,2,4,0,0.333,annotated-or-not
+adverse drug reaction,5,0,2,3,0,0.4,annotated-or-not

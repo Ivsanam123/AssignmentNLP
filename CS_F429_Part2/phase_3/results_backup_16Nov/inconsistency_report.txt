@@ -1,0 +1,38 @@
+== Inconsistent strings (train only; >= 5 exact occurrences, minority share >= 20%) ==
+  flagged strings: 15
+  by kind: {'annotated-or-not': 15}
+
+string                        occ  Chem  Dis unann part  ann%  kind
+pd                             23     0   18     5    0    78  annotated-or-not
+salt                           23     5    0    18    0    22  annotated-or-not
+k                              19    13    0     4    2    76  annotated-or-not
+se                             18     0   10     8    0    56  annotated-or-not
+smoking                        15     9    0     6    0    60  annotated-or-not
+sd                             14     0    4    10    0    29  annotated-or-not
+mr                             11     0    3     8    0    27  annotated-or-not
+tg                             11     0    8     3    0    73  annotated-or-not
+cm                             10     0    3     7    0    30  annotated-or-not
+corticosteroids                10     4    0     6    0    40  annotated-or-not
+pg                              9     6    0     3    0    67  annotated-or-not
+weakness                        9     0    3     3    3    50  annotated-or-not
+lid                             8     0    5     2    1    71  annotated-or-not
+drowsiness                      6     0    2     4    0    33  annotated-or-not
+adverse drug reaction           5     0    2     3    0    40  annotated-or-not
+
+  train sentences containing a flagged string: 171 / 5228 (3.3%)
+
+== Same strings in dev / test: annotated rate vs train ==
+  train: exact occurrences 185, annotated 95 (51.4%)
+  dev: exact occurrences 102, annotated 63 (61.8%)
+  test: exact occurrences 112, annotated 65 (58.0%)
+
+  largest train->test shifts in annotated rate (>=5 occurrences in both):
+    mr                         train  27% (11)   test 100% (5)
+    pg                         train  67% (9)   test   0% (7)
+    smoking                    train  60% (15)   test   0% (5)
+    weakness                   train  50% (6)   test 100% (5)
+    cm                         train  30% (10)   test  62% (8)
+    sd                         train  29% (14)   test   0% (17)
+    k                          train  76% (17)   test 100% (19)
+    pd                         train  78% (23)   test  89% (18)
+    se                         train  56% (18)   test  53% (17)

@@ -1,0 +1,615 @@
+short,long_form,defs_train,defs_dev,defs_test,defs_total,short_type_train,long_type_train,short_occurrences_train,short_annotated_train
+PD,parkinson's disease,6,3,4,13,Disease:18,Disease:21,23,18
+NMDA,n-methyl-d-aspartate,5,3,2,10,Chemical:22,Chemical:5,22,22
+NO,nitric oxide,2,4,3,9,Chemical:25,Chemical:8,179,25
+ECG,electrocardiographic,1,2,5,8,-,-,10,0
+SBP,systolic blood pressure,5,1,1,7,-,-,14,0
+SD,sprague - dawley,2,2,3,7,Disease:4,-,14,4
+5-FU,5-fluorouracil,2,1,3,6,Chemical:14,Chemical:13,14,14
+BP,blood pressure,2,2,2,6,-,-,12,0
+DA,dopamine,1,3,2,6,Chemical:7,Chemical:63,7,7
+HBV,hepatitis b virus,4,1,1,6,-,-,32,0
+MAP,mean arterial pressure,2,1,3,6,Chemical:2,-,12,2
+ACE,angiotensin - converting enzyme,1,2,2,5,-,-,16,0
+CNS,central nervous system,0,1,4,5,-,-,14,0
+HIT,heparin - induced thrombocytopenia,2,1,2,5,Disease:12,-,12,12
+LV,left ventricular,0,2,3,5,-,-,6,0
+MRI,magnetic resonance imaging,1,1,3,5,-,-,2,0
+NSAIDs,nonsteroidal anti - inflammatory drugs,0,2,3,5,-,-,0,0
+TdP,torsade de pointes,1,1,3,5,Disease:8,-,8,8
+VTE,venous thromboembolism,3,1,1,5,Disease:12,Disease:10,12,12
+AF,atrial fibrillation,0,2,2,4,-,Disease:12,1,0
+CIN,contrast - induced nephropathy,0,1,3,4,-,-,0,0
+COX,cyclooxygenase,1,2,1,4,-,-,7,0
+CT,chemotherapy,1,0,3,4,-,-,7,0
+DOX,doxorubicin,0,1,3,4,Chemical:20,Chemical:19,20,20
+EPS,extrapyramidal symptoms,0,2,2,4,Disease:2,Disease:4,2,2
+HR,heart rate,1,0,3,4,-,-,12,0
+IT,intrathecal,0,1,3,4,-,-,107,0
+IV,intravenous,2,0,2,4,-,-,17,0
+MI,myocardial infarction,0,2,2,4,-,Disease:32,0,0
+NMS,neuroleptic malignant syndrome,0,2,2,4,-,-,0,0
+PAN,puromycin aminonucleoside,1,1,2,4,Chemical:12,Chemical:12,14,12
+PRL,prolactin,2,1,1,4,-,-,16,0
+VAS,visual analogue scale,2,0,2,4,-,-,7,0
+VPA,valproic acid,1,2,1,4,Chemical:14,Chemical:9,14,14
+ACh,acetylcholine,3,0,0,3,Chemical:9,Chemical:16,9,9
+AChE,acetylcholinesterase,0,1,2,3,-,-,1,0
+ADC,apparent diffusion coefficient,2,1,0,3,-,-,6,0
+ADR,adriamycin,1,1,1,3,Chemical:4,Chemical:35,5,4
+BBB,blood - brain barrier,1,1,1,3,-,-,11,0
+BUN,blood urea nitrogen,0,1,2,3,-,Chemical:1,2,0
+CBZ,carbamazepine,0,1,2,3,Chemical:6,Chemical:28,6,6
+CI,confidence interval,2,0,1,3,-,-,37,0
+CM,cardiomyopathy,1,1,1,3,Disease:3,Disease:9,10,3
+CR,complete response,1,1,1,3,Chemical:1,-,6,1
+CYP,cytochrome p450 isoenzyme,1,1,1,3,-,-,1,0
+EACA,epsilon-aminocaproic acid,0,2,1,3,-,-,0,0
+ED,emergency department,2,1,0,3,-,-,5,0
+EEG,electroencephalogram,2,0,1,3,-,-,9,0
+EPM,elevated plus maze,1,0,2,3,-,-,2,0
+ESRD,end-stage renal disease,1,1,1,3,Disease:22,Disease:3,22,22
+GFR,glomerular filtration rate,2,1,0,3,-,-,11,0
+HAART,highly active antiretroviral therapy,1,1,1,3,-,-,7,0
+IR,immunoreactivity,0,0,3,3,-,-,0,0
+METH,methamphetamine,1,1,1,3,Chemical:10,Chemical:27,15,10
+MR,mitral regurgitation,1,1,1,3,Disease:3,Disease:2,11,3
+NSCLC,nonsmall cell lung carcinoma,1,1,1,3,Disease:9,Disease:4,9,9
+PPA,phenylpropanolamine,0,2,1,3,Chemical:2,Chemical:2,2,2
+RA,rheumatoid arthritis,0,3,0,3,-,Disease:9,0,0
+SRL,sirolimus,2,0,1,3,Chemical:26,Chemical:35,26,26
+VIP,vasoactive intestinal polypeptide,1,1,1,3,-,-,3,0
+WT,wild type,0,1,2,3,-,-,1,0
+cTnI,cardiac troponin i,1,0,2,3,-,-,8,0
+AHS,agricultural health study,0,0,2,2,-,-,0,0
+AKI,acute kidney injury,0,0,2,2,-,-,0,0
+ALL,acute lymphoblastic leukemia,1,0,1,2,Disease:4,Disease:4,125,4
+ALT,alanine aminotransferase,1,1,0,2,-,-,6,0
+ANP,atrial natriuretic peptide,1,0,1,2,-,-,2,0
+APL,acute promyelocytic leukemia,0,1,1,2,-,-,0,0
+ARB,angiotensin-releasing blocker,1,1,0,2,Chemical:2,Chemical:1,2,2
+ATRA,all- trans-retinoic acid,0,1,1,2,-,-,0,0
+AVP,arginine vasopressin,1,0,1,2,Chemical:5,Chemical:3,5,5
+AZT,3'-azido-3'dideoxythymidine,0,2,0,2,Chemical:4,-,4,4
+BS,bile salt,0,0,2,2,-,-,2,0
+CAA,chloroacetaldehyde,1,0,1,2,Chemical:4,Chemical:2,4,4
+CAT,catalase,0,1,1,2,-,-,0,0
+CC,clomiphene citrate,0,1,1,2,Chemical:8,Chemical:1,8,8
+CGRP,calcitonin gene-related peptide,2,0,0,2,Chemical:8,Chemical:2,8,8
+CRF,chronic renal failure,1,0,1,2,Disease:8,Disease:8,8,8
+CSF,cerebrospinal fluid,0,1,1,2,-,-,2,0
+CYP3A4,cytochrome p450 3a4,0,1,1,2,-,-,3,0
+Cr,creatinine,0,1,1,2,Chemical:1,Chemical:36,6,1
+CsA,conversion in patients undergoing cyclosporine,0,1,1,2,Chemical:6,-,6,6
+DBP,diastolic bp,1,1,0,2,-,-,4,0
+DI,dose - intensity,1,0,1,2,-,-,1,0
+DM,diabetes mellitus,0,2,0,2,-,Disease:6,0,0
+DRG,dorsal root ganglion,1,0,1,2,-,-,1,0
+DSE,dobutamine stress echocardiography,0,1,1,2,-,-,0,0
+DWI,diffusion - weighted imaging,1,1,0,2,-,-,5,0
+ECT,ecarin clotting time,2,0,0,2,-,-,5,0
+EE,ethinyl estradiol,1,0,1,2,Chemical:9,Chemical:3,9,9
+EF,ejection fraction,1,1,0,2,-,-,3,0
+F344,fischer 344,0,0,2,2,-,-,4,0
+FA,fluocinolone acetonide,0,1,1,2,-,-,0,0
+FLAIR,fluid attenuated inversion recovery,1,1,0,2,-,-,3,0
+FS,fractional shortening,2,0,0,2,-,-,11,0
+GEM,gemcitabine,1,0,1,2,Chemical:4,Chemical:7,4,4
+GI,gastrointestinal,0,1,1,2,-,-,0,0
+GPi,globus pallidus interna,0,2,0,2,-,-,0,0
+HBIG,hepatitis b immune globulin,0,2,0,2,-,-,0,0
+HBsAg,hepatitis b surface antigen,0,1,1,2,Chemical:6,-,6,6
+HDL,high - density lipoprotein,0,1,1,2,-,-,1,0
+HITT,hit with thrombosis,1,0,1,2,Disease:2,-,2,2
+HT,hormone therapy,0,1,1,2,Disease:4,-,4,4
+HUS,hemolytic uremic syndrome,1,1,0,2,Disease:3,Disease:5,3,3
+Hb,hemoglobin,1,0,1,2,-,-,6,0
+IFO,ifosfamide,0,0,2,2,-,Chemical:11,0,0
+IOP,intraocular pressure,0,2,0,2,-,-,1,0
+LIDs,levodopa - induced dyskinesias,1,0,1,2,Disease:6,-,6,6
+LMWH,low-molecular-weight heparin,0,2,0,2,-,-,0,0
+LT,lifetime,0,0,2,2,-,-,0,0
+LTP,long - term potentiation,1,0,1,2,-,-,4,0
+MDA,malondialdehyde,0,0,2,2,-,Chemical:2,0,0
+MESNA,2-mercaptoethane sulphonate,0,2,0,2,Chemical:1,-,1,1
+MM,methadone - maintenance,0,1,1,2,-,-,43,0
+MMC,mitomycin c,0,1,1,2,-,-,0,0
+MP,methylprednisolone,0,1,1,2,Disease:3,Chemical:6,3,3
+NGF,nerve growth factor,1,0,1,2,-,-,4,0
+NOS,no synthase,0,1,1,2,-,-,0,0
+ORs,odds ratios,2,0,0,2,-,-,2,0
+OS,overall survival,0,0,2,2,-,-,2,0
+PA,passive avoidance test,1,1,0,2,-,-,2,0
+PF,pair - fed,0,2,0,2,-,-,0,0
+PPI,prepulse inhibition,1,1,0,2,-,-,1,0
+PS,performance status,0,0,2,2,-,-,0,0
+PT,prothrombin time,2,0,0,2,-,-,2,0
+PTZ,pentylenetrazol,1,0,1,2,Chemical:4,-,4,4
+RBF,renal blood flow,0,1,1,2,-,-,0,0
+ROS,reactive oxygen species,0,0,2,2,-,-,0,0
+RPN,renal papillary necrosis,1,1,0,2,Disease:2,Disease:5,2,2
+SAH,subarachnoid hemorrhage,0,2,0,2,-,Disease:4,0,0
+SAP,systolic arterial pressure,0,0,2,2,-,-,1,0
+SC,subcutaneously,1,0,1,2,-,-,6,0
+SE,status epilepticus,1,0,1,2,Disease:10,Disease:11,18,10
+SHR,spontaneously hypertensive,0,0,2,2,-,-,0,0
+SIADH,syndrome of inappropriate anti-diuretic hormone,0,0,2,2,-,-,0,0
+SNP,sodium nitroprusside,0,0,2,2,Chemical:12,Chemical:5,12,12
+SOD,superoxide dismutase,0,0,2,2,-,-,0,0
+SSRIs,selective serotonin reuptake inhibitors,0,1,1,2,Chemical:4,-,4,4
+STZ,streptozocin,0,1,1,2,-,-,0,0
+SVR,sustained virological response,0,1,1,2,-,-,0,0
+Sch,suxamethonium chloride,1,1,0,2,Chemical:2,Chemical:1,3,2
+TDP,torsades de pointes,1,1,0,2,Disease:8,Disease:3,8,8
+TMA,thrombotic microangiopathy,1,1,0,2,Disease:7,Disease:16,7,7
+TMP,trimethaphan,1,0,1,2,Chemical:7,Chemical:2,7,7
+VNB,vinorelbine,2,0,0,2,Chemical:9,Chemical:4,9,9
+bFGF,basic fibroblast growth factor,0,2,0,2,-,-,0,0
+ddI,didanosine,2,0,0,2,Chemical:2,Chemical:4,2,2
+eNOS,endothelial no synthase,2,0,0,2,-,-,7,0
+fMRI,functional magnetic resonance imaging,2,0,0,2,-,-,4,0
+icv,intracerebroventricular,0,1,1,2,-,-,0,0
+rCBF,regional cerebral blood flow,0,2,0,2,-,-,0,0
+rTMS,repetitive transcranial magnetic stimulation,1,1,0,2,-,-,8,0
+2A,n-pyrimidinyl-2-phenoxyacetamide adenosine a,1,0,0,1,-,-,4,0
+3NT,3-nitrotyrosine,0,0,1,1,-,-,0,0
+"5,7-DHT","5,7-dihydroxytryptamine",0,1,0,1,-,-,0,0
+5-HIAA,5-hydroxyindoleacetic acid,0,0,1,1,-,-,0,0
+5-HT,5-hydroxytryptamine,0,0,1,1,Chemical:7,Chemical:1,7,7
+AAS,anabolic androgenic steroid,0,1,0,1,-,-,0,0
+ABC,aberrant behavior checklist,0,0,1,1,-,-,1,0
+ABS,apical ballooning syndrome,0,1,0,1,-,-,0,0
+ACC,anterior cingulated cortex,1,0,0,1,-,-,1,0
+ACTs,activated clotting times,0,0,1,1,-,-,1,0
+AChEs,acetylcholinesterases,1,0,0,1,-,-,2,0
+AChR,acetylcholine receptor,0,1,0,1,-,-,0,0
+ADL,activities of daily living,0,1,0,1,-,-,0,0
+ADRs,adverse drug reactions,0,1,0,1,-,Disease:3,0,0
+AED,antiepileptic drug,1,0,0,1,-,-,2,0
+AEs,adverse events,1,0,0,1,-,-,3,0
+AG,aminoguanidine,0,1,0,1,-,-,2,0
+AGC,advanced gastric cancer,0,0,1,1,-,-,0,0
+AGEs,advanced glycation end products,0,0,1,1,-,-,3,0
+AHF,argentine hemorrhagic fever,1,0,0,1,Disease:3,Disease:2,3,3
+AIN,acute interstitial nephritis,0,0,1,1,-,-,0,0
+AL,amyloidosis,0,0,1,1,-,-,2,0
+ALF,acute liver failure,0,0,1,1,Disease:12,Disease:3,12,12
+AMCA,and tranexamic acid,1,0,0,1,Chemical:2,-,2,2
+AMI,acute myocardial infarction,0,0,1,1,Chemical:6,Disease:5,6,6
+AMNS,puromycin-aminonucleoside,0,0,1,1,-,-,0,0
+ANCAs,antineutrophil cytoplasmic antibodies,0,1,0,1,-,-,0,0
+AP,action potential,0,0,1,1,-,-,0,0
+APD,action potential duration,0,0,1,1,-,-,0,0
+AQP2,aquaporin - 2,0,1,0,1,-,-,0,0
+ARF,acute renal failure,0,0,1,1,-,Disease:13,0,0
+ARI,acute renal insufficiency,0,0,1,1,-,-,0,0
+ART,antiretroviral therapy,0,0,1,1,-,-,0,0
+ARV,antiretroviral,1,0,0,1,-,-,1,0
+ATIN,acute tubulo-interstitial nephritis,0,0,1,1,-,-,0,0
+ATP,adenosine triphosphate,0,0,1,1,Chemical:8,-,8,8
+AV,atrioventricular,0,0,1,1,-,-,1,0
+AVRT,atrioventricular reentrant tachycardia,1,0,0,1,Disease:2,Disease:2,2,2
+AX,amoxicillin,1,0,0,1,Chemical:13,Chemical:4,13,13
+AmB,amphotericin b,1,0,0,1,Chemical:3,Chemical:10,3,3
+Ao,angiotensinogen,0,1,0,1,-,-,0,0
+Apo,apolipoproteins,0,0,1,1,-,-,0,0
+Ato,atorvastatin,1,0,0,1,Chemical:8,Chemical:3,8,8
+Aza,azathioprine,0,0,1,1,-,Chemical:6,0,0
+B1R,b1 receptor,0,1,0,1,-,-,0,0
+BAEPs,brainstem auditory evoked potentials,1,0,0,1,-,-,1,0
+BAU,benzylacyclouridine,0,1,0,1,-,-,0,0
+BCHE,butyrylcholinesterase gene,1,0,0,1,-,-,6,0
+BCP,basal core promoter,1,0,0,1,-,-,3,0
+BDL,bile duct ligation,1,0,0,1,-,-,6,0
+BF,basal frequency,1,0,0,1,-,-,5,0
+BIS,bispectral index,0,1,0,1,-,-,0,0
+BMCs,bone marrow mononuclear cells,1,0,0,1,-,-,4,0
+BMD,bone mineral density,0,1,0,1,-,-,0,0
+BMT,bone marrow transplantation,0,1,0,1,-,-,0,0
+BN,brown norway,0,0,1,1,-,-,1,0
+BNP,brain natriuretic peptide,1,0,0,1,-,-,6,0
+BOLD,blood oxygen level - dependent,1,0,0,1,-,-,1,0
+BPA,bisphenol a,0,0,1,1,-,-,0,0
+BPT,beraprost,0,1,0,1,-,-,0,0
+BSA,bovine serum albumin,0,0,1,1,-,-,0,0
+BTC,butyrylthiocholine,0,0,1,1,-,-,0,0
+Botox,botulinum toxin,0,0,1,1,-,-,0,0
+Bpd,bepridil hydrochloride,0,0,1,1,-,-,0,0
+BuChE,butyrylcholinestrase,0,1,0,1,-,-,0,0
+CAD,coronary artery disease,0,0,1,1,-,Disease:5,0,0
+CARE,cardiac angiography in renally impaired patients,1,0,0,1,-,-,7,0
+CDC,centers for disease control,0,1,0,1,-,-,0,0
+CDT,catheter - directed thrombolysis,0,0,1,1,-,-,0,0
+CE,celecoxib,0,0,1,1,-,-,0,0
+CEI,converting enzyme inhibitor,1,0,0,1,-,-,1,0
+CER,conditioned emotional response test,0,0,1,1,-,-,0,0
+CHF,congestive heart failure,1,0,0,1,Disease:5,Disease:5,5,5
+CIP,cocaine - induced paranoia,0,1,0,1,-,-,0,0
+CIPS,calcineurin - inhibitor induced pain syndrome,1,0,0,1,Disease:3,-,3,3
+CK,creatine kinase,0,1,0,1,-,-,4,0
+CLE,cutaneous lupus erythematosus,0,0,1,1,-,-,0,0
+CLZ,cilostazol,0,1,0,1,-,-,0,0
+CMV,cytomegalovirus,0,0,1,1,-,-,0,0
+CN,cyanide,1,0,0,1,-,-,6,0
+CNA,continuously nebulized albuterol,0,0,1,1,-,-,0,0
+CNP,c - type natriuretic peptide,1,0,0,1,-,-,2,0
+CP,cold - pressor,0,1,0,1,-,-,4,0
+CPA,cyproterone acetate,0,0,1,1,Chemical:9,Chemical:2,9,9
+CPAP,continuous positive airway pressure,1,0,0,1,-,-,8,0
+CPM,cyclophosphamide,1,0,0,1,Chemical:2,Chemical:30,2,2
+CPu,caudate - putamen,0,0,1,1,-,-,0,0
+CQ,chloroquine,0,1,0,1,-,Chemical:2,0,0
+CSE,"gamma-cholesteryloxybutyric acid , tris salt",0,1,0,1,-,-,0,0
+CTA,computerized tomography angiography,0,0,1,1,-,-,0,0
+CVA,cerebral vascular accident,0,1,0,1,-,-,0,0
+CVD,cardiovascular disease,0,0,1,1,-,Disease:5,0,0
+CVDs,cardiovascular diseases,0,0,1,1,-,-,0,0
+CY,cyclophosphamide,1,0,0,1,Chemical:7,Chemical:30,7,7
+CYA,cyclophosphamide,0,0,1,1,Chemical:1,Chemical:30,1,1
+Ce,concentration,0,1,0,1,-,-,0,0
+ChAT,choline acetyltransferase,0,1,0,1,-,-,0,0
+CxAD,circumflex artery diameter,0,0,1,1,-,-,0,0
+CyA,cyclosporine - based immunosuppression,0,1,0,1,Chemical:1,-,1,1
+D-MED,dexmedetomidine,0,1,0,1,-,-,0,0
+D-pen,d-penicillamine,1,0,0,1,Chemical:6,Chemical:6,6,6
+DA 2,dopamine - 2,0,1,0,1,-,-,0,0
+DA1,dopamine - 1,0,1,0,1,-,-,0,0
+DBH,dopamine beta - hydroxylase,1,0,0,1,-,-,6,0
+DCE,daucus carota seeds,1,0,0,1,Chemical:7,-,7,7
+DCM,dilated cardiomyopathy,0,1,0,1,-,Disease:3,0,0
+DEC,diethylcarbamazine,0,0,1,1,-,-,0,0
+DEP,diethylpropion,0,0,1,1,-,-,0,0
+DES,diethylstilbestrol,0,0,1,1,Chemical:9,Chemical:4,11,9
+DFMO,difluoromethylornithine,0,1,0,1,-,-,0,0
+DFO,desferrioxamine,1,0,0,1,Chemical:4,Chemical:6,4,4
+DFX,desferrioxamine,0,0,1,1,-,Chemical:6,0,0
+DG,dentate gyrus,0,0,1,1,-,-,0,0
+DGC,dystrophin - glycoprotein complex,0,1,0,1,-,-,0,0
+DHEA,dehydroepiandrosterone,0,0,1,1,-,-,0,0
+DILI,drug-induced liver injury,0,0,1,1,-,-,0,0
+DLT,dose - limiting toxicity,0,1,0,1,-,-,0,0
+DMTU,dimethylthiourea,0,0,1,1,-,-,0,0
+DNAP,dna polymerase,0,1,0,1,-,-,0,0
+DOC,duration of catatonia,0,1,0,1,-,-,0,0
+DPH,diphenylhydantoin,0,1,0,1,-,-,0,0
+DPI,difference in pain intensity score,0,0,1,1,-,-,0,0
+DRC,dose - response curve,0,0,1,1,-,-,0,0
+DTG,di-o-tolylguanidine,1,0,0,1,Chemical:1,Chemical:1,1,1
+DTIs,direct thrombin inhibitors,1,0,0,1,-,-,2,0
+DVT,deep venous thrombosis,0,0,1,1,-,-,0,0
+DW,diffusion - weighted,1,0,0,1,-,-,2,0
+DXNP,doxorubicin - loaded nanoparticle,0,1,0,1,-,-,0,0
+EAD,early afterdepolarization,0,0,1,1,-,-,0,0
+EBF,epidural blood flow,1,0,0,1,-,-,3,0
+EC,exercise control,0,0,1,1,-,-,0,0
+ECGs,electrocardiograms,0,0,1,1,-,-,1,0
+EDs,emergency departments,0,0,1,1,-,-,0,0
+EFE,emotional facial expression,0,0,1,1,-,-,0,0
+EIA,enzyme immunoassay,0,1,0,1,-,-,0,0
+EMG,electromyographic activity,0,1,0,1,-,-,1,0
+ENaC,epithelial na channel,0,1,0,1,-,-,6,0
+EP,epinephrine,1,0,0,1,Chemical:1,Chemical:16,1,1
+EPO,erythropoietin,1,0,0,1,-,-,8,0
+ER,emergency room,0,1,0,1,-,-,0,0
+ERK,extracellular signal - regulated kinase,0,0,1,1,-,-,0,0
+ERP,effective refractory period,0,1,0,1,-,-,0,0
+ERPF,effective renal plasma flow,0,1,0,1,-,-,0,0
+ES,end - systolic,1,0,0,1,-,-,2,0
+ETT,endotracheal tube,0,0,1,1,-,-,0,0
+EU,elisa units,0,1,0,1,-,-,0,0
+EXCEL,expanded clinical evaluation of lovastatin,0,1,0,1,-,-,0,0
+EndoMT,endothelial - mesenchymal - transition,0,0,1,1,-,-,0,0
+FAN,fangchinoline,1,0,0,1,Chemical:6,Chemical:2,6,6
+FBAL,alpha-fluoro-beta-alanine,0,0,1,1,-,-,0,0
+FDC,fixed - dose combination,0,1,0,1,-,-,0,0
+FESS,functional endoscopic sinus surgery,0,0,1,1,-,-,0,0
+FEV1,forced expiratory volume in 1 second,1,0,0,1,-,-,3,0
+FHF,fulminant hepatic failure,0,0,1,1,-,Disease:1,0,0
+FK 506,fk 506 - induced hypertension in the rat .- tacrolimus,1,0,0,1,Chemical:10,-,0,10
+FL,flumazenil,1,0,0,1,Chemical:2,Chemical:1,2,2
+FPD,field potential duration,0,0,1,1,-,-,0,0
+FPS,fear - potentiated startle,0,1,0,1,-,-,0,0
+FR,free radical,1,0,0,1,-,-,4,0
+FRAP,ferric reducing antioxidant power,0,0,1,1,-,-,0,0
+FRLMA,flexible reinforced laryngeal mask airway,0,0,1,1,-,-,0,0
+FSGS,focal segmental glomerular sclerosis,0,0,1,1,-,-,0,0
+FVIIIRAg,factor viii related antigen,0,1,0,1,-,-,0,0
+FZP,flurazepam,0,0,1,1,-,-,0,0
+GABA,gamma-aminobutyric acid,0,0,1,1,Chemical:13,Chemical:2,15,13
+GAD,glutamic acid decarboxylase,0,1,0,1,-,-,0,0
+GBM,glioblastoma multiforme,0,0,1,1,-,-,0,0
+GD,gestational day,0,1,0,1,-,-,1,0
+GF,germfree,0,1,0,1,-,-,0,0
+GFC,garcinielliptone fc,0,0,1,1,-,-,0,0
+GFP,green fluorescent protein,1,0,0,1,-,-,2,0
+GLEPP1,glomerular epithelial protein 1,1,0,0,1,-,-,9,0
+GM,gentamicin,1,0,0,1,Chemical:9,Chemical:15,11,9
+GOT,glutamate - oxaloacetate transaminase,0,1,0,1,-,-,3,0
+GR,glutathione reductase,0,0,1,1,-,-,7,0
+GRS,"gcs ), and radial strain",0,0,1,1,-,-,0,0
+GSI,glomerulosclerosis index,0,0,1,1,-,-,0,0
+GSPE,grape seed proanthocyanidin extract,1,0,0,1,Chemical:10,-,10,10
+GTCS,generalized tonic-clonic seizure,0,0,1,1,-,-,0,0
+GTN,glyceryl trinitrate,0,1,0,1,-,-,0,0
+GVG,gamma-vinyl gaba,1,0,0,1,Chemical:4,Chemical:2,4,4
+GVHD,graft-versus-host disease,0,1,0,1,-,-,0,0
+GlyT1,glycine transporter - 1,1,0,0,1,-,-,2,0
+H1,histamine 1,0,0,1,1,-,-,0,0
+H2,histamine 2,0,0,1,1,-,-,1,0
+HAG,high adherence group,0,0,1,1,-,-,0,0
+HAL,haloperidol,0,1,0,1,-,Chemical:46,0,0
+HBIg,hepatitis b immune globulin,0,0,1,1,-,-,0,0
+HBMP,human bone marrow progenitor,0,0,1,1,-,-,0,0
+HBSAG,hepatitis-b surface antigen,1,0,0,1,Chemical:6,Chemical:1,6,6
+HBeAg,hepatitis b e antigen,0,1,0,1,Chemical:4,-,4,4
+HC,hemorrhagic cystitis,0,1,0,1,-,Disease:6,0,0
+HCFCs,hydrochlorofluorocarbons,1,0,0,1,Chemical:1,Chemical:2,3,1
+HCV,hepatitis c virus,0,1,0,1,-,-,0,0
+HEV,hepatitis e virus,1,0,0,1,-,-,1,0
+HFDE,hexafluorodiethyl ether,1,0,0,1,Chemical:2,Chemical:1,2,2
+HL,hodgkin lymphoma,0,0,1,1,-,-,0,0
+HP,high protein,1,0,0,1,-,-,6,0
+HPA,hypothalamic - pituitary - adrenal,0,0,1,1,-,-,0,0
+HPLC,high - pressure liquid chromatography,0,1,0,1,-,-,2,0
+HPMA,n-(2-hydroxypropyl)methacrylamide,0,0,1,1,-,-,0,0
+HRp,hr period,0,0,1,1,-,-,0,0
+HS,high - salt,1,0,0,1,-,-,8,0
+IC,inferior colliculus,0,1,0,1,-,-,2,0
+ICC,intraclass correlation coefficient,0,0,1,1,-,-,0,0
+ICH,intracerebral hemorrhage,1,0,0,1,Disease:10,Disease:8,10,10
+ICP,intracranial pressure,1,0,0,1,-,-,4,0
+ICU,intensive care unit,0,0,1,1,-,-,0,0
+ICV,intracerebroventricular,0,0,1,1,-,-,0,0
+IDM,indomethacin,0,0,1,1,-,Chemical:4,0,0
+IDR,intradermoreactions,0,0,1,1,-,-,0,0
+IE,infective endocarditis,0,0,1,1,-,-,4,0
+IF,ifosfamide,0,1,0,1,-,Chemical:11,25,0
+IGE,idiopathic generalized epilepsies,0,1,0,1,-,-,0,0
+IGF II,insulin - like growth factor ii,1,0,0,1,-,-,0,0
+IHC,immunohistochemistry,0,0,1,1,-,-,0,0
+ILK,integrin - linked kinase,0,0,1,1,-,-,0,0
+IM,inner medulla,0,1,0,1,-,-,0,0
+IMPACT,impact of medical subspecialty on patient compliance to treatment,0,0,1,1,-,-,8,0
+INA,intermittent albuterol,0,0,1,1,-,-,0,0
+INWEST,intravenous nimodipine west european stroke trial,1,0,0,1,-,-,1,0
+IP,intraperitoneal,0,1,0,1,-,-,12,0
+IPRK,isolated perfused rat kidney,0,1,0,1,-,-,0,0
+IS,immunosuppressive,1,0,0,1,-,-,450,0
+ISG,immune serum globulin,0,1,0,1,-,-,0,0
+ISO,isoproterenol,0,0,1,1,Chemical:5,Chemical:30,6,5
+ISOM,inner stripe of the outer medulla,0,1,0,1,-,-,0,0
+IST,idiopathic subjective tinnitus,1,0,0,1,Disease:2,Disease:1,2,2
+IUGR,intrauterine growth retardation,0,0,1,1,-,Disease:1,0,0
+IW,intensity - weighted,0,0,1,1,-,-,0,0
+LA,lactate,1,0,0,1,Chemical:4,Chemical:4,4,4
+LACNP,lateral antebrachial cutaneous neuropathy,0,0,1,1,-,-,0,0
+LAM,lamivudine,1,0,0,1,Chemical:6,Chemical:27,6,6
+LDH,lactate dehydrogenase,0,1,0,1,-,-,1,0
+LDL,low - density lipoprotein,0,0,1,1,-,-,4,0
+LDLr,low - density lipoprotein receptor,0,0,1,1,-,-,0,0
+LES,light - enhanced startle paradigm,0,1,0,1,-,-,0,0
+LF,lactoferrin,0,0,1,1,-,-,0,0
+LH,luteinizing hormone,0,0,1,1,-,-,4,0
+LID,l-dopa - induced dyskinesia,1,0,0,1,Disease:5,-,8,5
+LNAA,large neutral amino acid,0,0,1,1,-,-,0,0
+LPO,lipid peroxide,1,0,0,1,-,-,4,0
+LS,low - salt,1,0,0,1,-,-,2,0
+LTG,lamotrigine,0,1,0,1,-,Chemical:1,0,0
+LW,lobund strain wistar,0,1,0,1,-,-,0,0
+MA,methamphetamine,0,0,1,1,-,Chemical:27,0,0
+MAHA,microangiopathic hemolytic anemia,1,0,0,1,Disease:5,Disease:4,5,5
+MAOI,monoamine oxidase inhibitor,0,1,0,1,-,-,0,0
+MB,microbleeds,0,0,1,1,-,-,2,0
+MC,myotonia congenita,0,0,1,1,-,Disease:2,0,0
+MCAO,middle cerebral artery occlusion,0,1,0,1,-,-,0,0
+MCL,mantle cell lymphoma,0,0,1,1,-,Disease:1,0,0
+MD,molecular dynamic,0,0,1,1,-,-,1,0
+MDs,midline defects,0,1,0,1,-,-,0,0
+ME,median eminence,0,0,1,1,-,-,0,0
+MES,maximal electroshock,0,0,1,1,-,-,1,0
+MFS,mossy fiber sprouting,0,0,1,1,-,-,0,0
+MHPG,3-methoxy-4-hydroxyphenethyleneglycol,0,0,1,1,-,-,0,0
+MHRA,medicines and healthcare products regulatory agency,0,0,1,1,-,-,0,0
+MHb,methemoglobin,1,0,0,1,-,-,6,0
+MICU,medical intensive care unit,0,0,1,1,-,-,0,0
+MIP,myo-inositol-1-phosphate,0,0,1,1,-,-,0,0
+MMEC,mouse pancreatic microvascular endothelial cell line,0,0,1,1,-,-,0,0
+MMPs,matrix metalloproteinases,1,0,0,1,-,-,1,0
+MRDs,mean radial degrees,0,0,1,1,-,-,0,0
+MRP2,multidrug resistance protein 2,1,0,0,1,-,-,13,0
+MSG,monosodium glutamate,0,0,1,1,-,-,0,0
+MSSA,methicillin - sensitive staphylococcus aureus,0,0,1,1,-,-,0,0
+MSSBP,mean sitting systolic bp,0,0,1,1,-,-,0,0
+MT,metallothionein,0,0,1,1,-,-,0,0
+MTD,maximum tolerated dose,0,0,1,1,-,-,0,0
+MTX,methotrexate,0,0,1,1,Chemical:7,Chemical:14,7,7
+MWM,morris water maze,0,1,0,1,-,-,0,0
+MZ,midazolan,1,0,0,1,Chemical:7,Chemical:1,7,7
+NA,noradrenaline,0,0,1,1,Chemical:31,Chemical:11,33,31
+NAFLD,nonalcoholic fatty liver disease,0,0,1,1,-,-,0,0
+NAcc,nucleus accumbens,1,0,0,1,-,-,1,0
+NCS,nerve conduction studies,0,0,1,1,-,-,0,0
+NCSE,non-convulsive status epilepticus,0,0,1,1,-,-,0,0
+ND,normal diet - fed,0,1,0,1,-,-,0,0
+ND-NMBA,nondepolarizing neuromuscular blocking agents,0,1,0,1,-,-,0,0
+NDI,nephrogenic diabetes insipidus,0,0,1,1,-,-,0,0
+NET,norepinephrine transporter,0,1,0,1,-,-,1,0
+NF,neurofilament,1,0,0,1,-,-,6,0
+NFkappaB,nuclear factor kappa b,1,0,0,1,-,-,5,0
+NGAL,neutrophil gelatinase - associated lipocalin,0,0,1,1,-,-,0,0
+NIMO,nimodipine,0,1,0,1,-,Chemical:9,0,0
+NIN,nicotine - induced nystagmus,1,0,0,1,Disease:4,-,4,4
+NMBAs,neuromuscular blocking agents,1,0,0,1,-,-,2,0
+NMDARs,n-methyl-d-aspartate receptors,0,1,0,1,-,-,0,0
+NOEL,no observed effect level,0,1,0,1,-,-,0,0
+NPY,neuropeptide - y,0,1,0,1,-,-,0,0
+NS,non - selective,0,0,1,1,-,-,2,0
+NSAID,nonsteroidal antiinflammatory drugs,0,1,0,1,-,-,1,0
+NSVT,nonsustained ventricular tachycardia,0,1,0,1,-,-,0,0
+NT-proBNP,n-terminal pro brain natriuretic peptide,0,1,0,1,-,-,0,0
+NTE,neuropathy target enzyme,1,0,0,1,-,-,5,0
+NTg,non - transgenic,0,1,0,1,-,-,0,0
+NYHA,new york heart association,1,0,0,1,-,-,1,0
+OAB,overactive bladder,0,1,0,1,-,-,0,0
+OAC,oral anticoagulant,0,1,0,1,-,-,0,0
+OB,obese,0,1,0,1,-,-,0,0
+OC,oral contraceptives,1,0,0,1,Chemical:4,Chemical:14,4,4
+OCD,obsessive-compulsive disorder,1,0,0,1,Disease:5,Disease:1,5,5
+OCs,oral contraceptives,0,0,1,1,-,Chemical:14,0,0
+OIH,opioid - induced hyperalgesia,0,0,1,1,-,-,0,0
+OMD,oromandibular dystonia,0,1,0,1,-,-,0,0
+OP,organophosphorus,1,0,0,1,Chemical:2,Chemical:1,3,2
+OPSE,oropharyngeal swallowing efficiency,0,0,1,1,-,-,0,0
+OR,odds ratio,0,0,1,1,-,-,485,0
+ORL1,opioid receptor - like receptor 1,0,0,1,1,-,-,0,0
+ORR,overall response rate,0,0,1,1,-,-,0,0
+OSCS,oversulfated chondroitin sulfate,0,1,0,1,-,-,0,0
+PAF,platelet - activating factor,0,1,0,1,-,-,0,0
+PAH,para-aminohippurate,0,1,0,1,-,-,0,0
+PARP,poly(adp-ribose) polymerase,0,1,0,1,-,-,0,0
+PAS,periodic acid schiff,0,1,0,1,-,-,1,0
+PAs,prostate adenocarcinomas,0,1,0,1,-,-,1,0
+PB,phenobarbital,0,1,0,1,-,Chemical:7,0,0
+PBSCT,peripheral blood stem cell transplant,0,0,1,1,-,-,0,0
+PC,precore,1,0,0,1,-,-,3,0
+PCA,patient - controlled analgesia,1,0,0,1,-,-,1,0
+PCC,prothrombin complex concentrate,0,1,0,1,-,-,0,0
+PCE,prenatal caffeine exposure,0,0,1,1,-,-,0,0
+PCNA,proliferating cell nuclear antigen,0,1,0,1,-,-,0,0
+PDN,prednisone,0,0,1,1,-,Chemical:3,0,0
+PDTC,pyrrolidine dithiocarbamate,1,0,0,1,Chemical:8,Chemical:2,8,8
+PENK,proenkephalin,0,0,1,1,-,-,0,0
+PET,positron emission tomography,0,1,0,1,-,-,0,0
+PFS,progression - free survival,0,0,1,1,-,-,0,0
+PFSs,progression - free survivals,0,0,1,1,-,-,0,0
+PG,prostaglandin,0,1,0,1,Chemical:6,-,9,6
+PGE1,prostaglandin e1,1,0,0,1,Chemical:9,Chemical:5,9,9
+PGE2,prostaglandin e2,0,0,1,1,-,-,0,0
+PGs,prostaglandins,0,1,0,1,-,Chemical:1,0,0
+PHZ,phenylhydrazine,0,1,0,1,-,-,0,0
+PILO,pilocarpine,0,1,0,1,-,Chemical:21,0,0
+PN,postnatal days,1,0,0,1,-,-,7,0
+PND,postnatal day,0,0,1,1,-,-,0,0
+PO,per os,0,0,1,1,-,-,3,0
+POD,postoperative day,0,1,0,1,-,-,0,0
+POG,pediatric oncology group,0,0,1,1,-,-,0,0
+PRA,plasma renin activity,0,0,1,1,-,-,0,0
+PREGS,pregnenolone sulphate,0,1,0,1,-,-,0,0
+PRI,proliferation rate index,0,0,1,1,-,-,0,0
+PRK,photorefractive keratectomy,0,1,0,1,-,-,0,0
+PROD,pentoxyresorufin - o - dealkylase,0,1,0,1,-,-,0,0
+PTH,parathyroid hormone,0,1,0,1,-,-,0,0
+PTLD,posttransplant lymphoproliferative disorder,0,1,0,1,-,-,0,0
+PTU,propylthiouracil,0,0,1,1,-,Chemical:6,0,0
+PTX,picrotoxin,1,0,0,1,Chemical:2,Chemical:4,2,2
+PVN,paraventricular,1,0,0,1,-,-,3,0
+RAS,renin - angiotensin system,0,0,1,1,-,-,1,0
+RBCs,red blood cells,1,0,0,1,-,-,7,0
+RC,recreational cocaine,0,0,1,1,-,-,2,0
+REMD,rem sleep deprivation,0,1,0,1,-,-,0,0
+RF,radiofrequency,0,0,1,1,-,-,0,0
+RNFL,retinal nerve fiber layer,0,1,0,1,-,-,0,0
+RNS,ros )/ nitrogen species,0,0,1,1,-,-,0,0
+ROSC,return of spontaneous circulation,0,0,1,1,-,-,0,0
+RPGN,rapidly progressive glomerulonephritis,0,1,0,1,-,-,0,0
+RPP,rate pressure product,1,0,0,1,-,-,1,0
+RRs,rate ratios,0,0,1,1,-,-,0,0
+RS,rabbit syndrome,1,0,0,1,Disease:3,Disease:4,5,3
+RT,reverse transcriptase,1,0,0,1,-,-,3,0
+SBs,strand breaks,0,0,1,1,-,-,0,0
+SCr,serum creatinine,1,0,0,1,-,-,10,0
+SF36,short form 36,0,1,0,1,-,-,0,0
+SG,specific gravity,0,1,0,1,-,-,0,0
+SH,sulfhydryl,0,0,1,1,-,-,1,0
+SIAT,swallowing - induced atrial tachyarrhythmia,0,1,0,1,-,-,0,0
+SIS3,specific inhibitor of smad3,0,0,1,1,-,-,0,0
+SLE,systemic lupus erythematosus,0,1,0,1,-,Disease:1,0,0
+SMA,supplementary motor area,0,1,0,1,-,-,0,0
+SNAPs,sensory nerve action potentials,0,0,1,1,-,-,0,0
+SNR,substantia nigra,0,0,1,1,-,-,0,0
+SOLVD,studies of left ventricular dysfunction,0,1,0,1,-,-,0,0
+SON,supraoptic nuclei,1,0,0,1,-,-,4,0
+SR,sustained - release,1,0,0,1,-,-,3,0
+SRC,scleroderma renal crisis,0,0,1,1,-,-,0,0
+SRS,seizures,1,0,0,1,Disease:2,Disease:61,2,2
+SSc,systemic sclerosis,0,0,1,1,-,-,0,0
+STAT3,signal transducer and activator of transcription 3,0,0,1,1,-,-,0,0
+STN,subthalamic nucleus,0,0,1,1,-,-,0,0
+STR,strychnine,1,0,0,1,Chemical:2,Chemical:1,2,2
+STX,saxitoxin,0,1,0,1,-,-,0,0
+SVRs,sustained virologic responses,0,1,0,1,-,-,0,0
+Srl,sirolmus,1,0,0,1,Chemical:26,Chemical:1,26,26
+TAA,thoracic aortic aneurysm,1,0,0,1,Disease:3,Disease:2,3,3
+TBARSs,thiobarbituric acid reactive substances,0,0,1,1,-,-,0,0
+TCI,target - controlled infusions,0,1,0,1,-,-,0,0
+TD,tardive dyskinesia,1,0,0,1,Disease:1,Disease:5,1,1
+TDF,tenofovir disoproxil fumarate,0,0,1,1,-,-,0,0
+TDI,total dose infusion,0,1,0,1,-,-,0,0
+TDR,transmural dispersion of repolarization,0,0,1,1,-,-,0,0
+TEOAEs,transient evoked otoacoustic emissions,1,0,0,1,-,-,4,0
+TET,tetrandrine,1,0,0,1,Chemical:6,Chemical:2,6,6
+TG,transplant glomerulopathy,1,0,0,1,Disease:8,Disease:1,11,8
+TGR,transgenic rats with low brain angiotensinogen,0,0,1,1,-,-,0,0
+TH,tyrosine hydroxylase,0,1,0,1,-,-,0,0
+TIDA,tuberoinfundibular dopaminergic,0,0,1,1,-,-,0,0
+TLR4,toll - like receptor 4,0,0,1,1,-,-,0,0
+TNA,tranexamic acid,0,0,1,1,-,Chemical:4,0,0
+TNSs,transient neurologic symptoms,1,0,0,1,Disease:6,Disease:2,6,6
+TRH,thyrotropin - releasing hormone,0,0,1,1,-,-,0,0
+TRP,tryptophan,1,0,0,1,Chemical:2,Chemical:2,2,2
+TS,thymidylate synthase,0,1,0,1,-,-,0,0
+TSH,thyroid stimulating hormone,0,1,0,1,-,-,0,0
+TT,thrombin time,1,0,0,1,-,-,1,0
+TTC,tetrazolium chloride,0,1,0,1,-,-,0,0
+TXA,tranexamic acid,0,1,0,1,-,Chemical:4,0,0
+TXB2,thromboxane b2,0,0,1,1,-,-,0,0
+Tac,tacrolimus,0,1,0,1,Chemical:3,Chemical:33,3,3
+Trks,tyrosine kinase receptors,0,0,1,1,-,-,0,0
+U-II,urotensin-ii,1,0,0,1,Chemical:9,Chemical:2,9,9
+UDCA,ursodeoxycholic acid,1,0,0,1,Chemical:2,Chemical:3,2,2
+UFH,unfractionated heparin sodium,0,1,0,1,-,-,0,0
+UGT,uridine diphosphate glucoronosyltransferases,1,0,0,1,-,-,2,0
+UH,unfractionated heparin,0,1,0,1,-,-,0,0
+UKPDRG,united kingdom parkinson's disease research group,1,0,0,1,-,-,1,0
+UPDRS,unified parkinson's disease rating scale,0,0,1,1,-,-,0,0
+Urd,uridine,0,1,0,1,-,-,0,0
+VAL,valsartan,0,0,1,1,-,-,0,0
+VDS,vindesine,0,0,1,1,-,-,0,0
+VEGF,vascular endothelial growth factor,0,1,0,1,-,-,0,0
+VF,ventricular fibrillation,0,1,0,1,-,Disease:8,0,0
+VFD,visual field defects,1,0,0,1,Disease:1,Disease:1,1,1
+VNR,vinorelbine,0,0,1,1,-,Chemical:4,0,0
+VSDs,ventricular septal defects,0,1,0,1,-,-,0,0
+VT,ventricular tachycardia,0,0,1,1,-,Disease:13,0,0
+Vd,volume of distribution,1,0,0,1,-,-,1,0
+WDS,wet dog shake,0,0,1,1,-,-,0,0
+WHO,world health organization,0,0,1,1,-,-,161,0
+WSP,withdrawal seizure - prone,1,0,0,1,-,-,5,0
+aPTTs,activated partial thromboplastin times,0,0,1,1,-,-,0,0
+alpha-T,alpha-tocopherol,1,0,0,1,Chemical:2,Chemical:1,2,2
+atorva,atorvastatin,0,1,0,1,-,Chemical:3,0,0
+cTnT,cardiac troponin t,0,0,1,1,-,-,14,0
+cis-RA,13-cis-retinoic acid,0,1,0,1,-,-,0,0
+dex,dexamethasone,0,0,1,1,Chemical:15,Chemical:18,16,15
+eGFP,enhanced green fluorescent protein,1,0,0,1,-,-,3,0
+fMLP,formyl-methionyl-leucyl-phenylalanine,0,1,0,1,-,-,0,0
+hCRH,human corticotropin - releasing hormone,0,0,1,1,-,-,0,0
+host,has been transferred onto a second strain,1,0,0,1,-,-,3,0
+iAs,inorganic arsenic,0,0,1,1,-,-,0,0
+ip,intraperitoneally,0,0,1,1,-,-,12,0
+irCRF,immunoreactive corticotropin - releasing factor,1,0,0,1,-,-,3,0
+mAChR,muscarinic acetylcholine receptor,0,1,0,1,-,-,0,0
+mGlu,metabotropic glutamate,0,1,0,1,-,-,0,0
+mGluR5,metabotropic glutamate receptor 5,1,0,0,1,-,-,5,0
+mRNA,messenger ribonucleic acid,0,1,0,1,-,-,31,0
+mToR,mammalian target of rapamycin,1,0,0,1,-,-,4,0
+monoHER,monohydroxyethylrutoside,0,0,1,1,-,-,0,0
+mtDNA,mitochondrial dna,0,1,0,1,-,-,6,0
+nAChRs,nicotinic acetylcholine receptors,1,0,0,1,-,-,2,0
+nNOS,neuronal nitric oxide synthase,1,0,0,1,-,-,3,0
+pAKT,phospho akt,0,0,1,1,-,-,0,0
+pANCA,perinuclear - staining antineutrophil cytoplasmic autoantibodies,1,0,0,1,-,-,2,0
+rHuEPO,recombinant human erythropoietin,0,1,0,1,-,-,2,0
+rh,recombinant human,0,0,1,1,-,-,0,0
+sAD,sporadic alzheimer's disease,0,0,1,1,-,-,0,0
+tAMCA,tranexamic acid,1,0,0,1,Chemical:9,Chemical:4,9,9

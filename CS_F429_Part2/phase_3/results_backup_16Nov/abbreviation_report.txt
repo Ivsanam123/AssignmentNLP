@@ -1,0 +1,54 @@
+== Abbreviation definitions found by Schwartz-Hearst ('long form ( SHORT )') ==
+  train: 215 / 5228 sentences contain a definition
+  dev: 253 / 5330 sentences contain a definition
+  test: 316 / 5865 sentences contain a definition
+  distinct short forms: 614
+  short forms whose long form is an annotated train entity: 139 (22.6%)
+  short forms that are themselves annotated in train: 124 (20.2%)
+  where both are annotated in train: type agrees 97, differs 2
+
+== Top 40 abbreviations by definition count ==
+short    long form                                     defs  short type (train)      long type (train)
+PD       parkinson's disease                             13  Disease:18              Disease:21
+NMDA     n-methyl-d-aspartate                            10  Chemical:22             Chemical:5
+NO       nitric oxide                                     9  Chemical:25             Chemical:8
+ECG      electrocardiographic                             8  -                       -
+SBP      systolic blood pressure                          7  -                       -
+SD       sprague - dawley                                 7  Disease:4               -
+5-FU     5-fluorouracil                                   6  Chemical:14             Chemical:13
+BP       blood pressure                                   6  -                       -
+DA       dopamine                                         6  Chemical:7              Chemical:63
+HBV      hepatitis b virus                                6  -                       -
+MAP      mean arterial pressure                           6  Chemical:2              -
+ACE      angiotensin - converting enzyme                  5  -                       -
+CNS      central nervous system                           5  -                       -
+HIT      heparin - induced thrombocytopenia               5  Disease:12              -
+LV       left ventricular                                 5  -                       -
+MRI      magnetic resonance imaging                       5  -                       -
+NSAIDs   nonsteroidal anti - inflammatory drugs           5  -                       -
+TdP      torsade de pointes                               5  Disease:8               -
+VTE      venous thromboembolism                           5  Disease:12              Disease:10
+AF       atrial fibrillation                              4  -                       Disease:12
+CIN      contrast - induced nephropathy                   4  -                       -
+COX      cyclooxygenase                                   4  -                       -
+CT       chemotherapy                                     4  -                       -
+DOX      doxorubicin                                      4  Chemical:20             Chemical:19
+EPS      extrapyramidal symptoms                          4  Disease:2               Disease:4
+HR       heart rate                                       4  -                       -
+IT       intrathecal                                      4  -                       -
+IV       intravenous                                      4  -                       -
+MI       myocardial infarction                            4  -                       Disease:32
+NMS      neuroleptic malignant syndrome                   4  -                       -
+PAN      puromycin aminonucleoside                        4  Chemical:12             Chemical:12
+PRL      prolactin                                        4  -                       -
+VAS      visual analogue scale                            4  -                       -
+VPA      valproic acid                                    4  Chemical:14             Chemical:9
+ACh      acetylcholine                                    3  Chemical:9              Chemical:16
+AChE     acetylcholinesterase                             3  -                       -
+ADC      apparent diffusion coefficient                   3  -                       -
+ADR      adriamycin                                       3  Chemical:4              Chemical:35
+BBB      blood - brain barrier                            3  -                       -
+BUN      blood urea nitrogen                              3  -                       Chemical:1
+
+== Short strings annotated as BOTH Chemical and Disease in train ==
+  pcp        {'Disease': 2, 'Chemical': 1}
