@@ -6,3 +6,9 @@ __pycache__/
 .env
 *.pem
 *.key
+
+# HPC / BioBERT
+.venv_gpu/
+.hf_cache/
+phase_3/biobert/logs/
+models/biobert/
