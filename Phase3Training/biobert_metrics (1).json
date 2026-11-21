@@ -1,0 +1,44 @@
+{
+  "model": "dmis-lab/biobert-base-cased-v1.1",
+  "lr": 3e-05,
+  "batch": 16,
+  "epochs": 4,
+  "max_len": 512,
+  "seed": 42,
+  "replace": 0.0,
+  "mask": 0.0,
+  "dev": {
+    "per_type": {
+      "Chemical": {
+        "precision": 0.9346916499909041,
+        "recall": 0.9609126613054049,
+        "f1": 0.9476208041313169,
+        "support": 5347,
+        "predicted": 5497,
+        "tp": 5138
+      },
+      "Disease": {
+        "precision": 0.8297676558546124,
+        "recall": 0.8499057492931197,
+        "f1": 0.839715981841462,
+        "support": 4244,
+        "predicted": 4347,
+        "tp": 3607
+      }
+    },
+    "overall": {
+      "precision": 0.8883583908980089,
+      "recall": 0.9117923052862058,
+      "f1": 0.8999228196552611,
+      "support": 9591,
+      "predicted": 9844,
+      "tp": 8745
+    },
+    "macro": {
+      "precision": 0.8822296529227582,
+      "recall": 0.9054092052992623,
+      "f1": 0.8936683929863894
+    }
+  },
+  "test": null
+}
