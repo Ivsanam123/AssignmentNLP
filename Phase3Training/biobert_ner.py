@@ -1,27 +1,38 @@
-from google.colab import drive
-drive.mount('/content/drive')
-import os
-assert os.path.isdir('/content/drive/MyDrive'), "Drive not mounted, stop and fix this first"
 
 import sys
-sys.argv = ["biobert_ner.py", "--out", "/content/drive/MyDrive/biobert_run"]
+sys.argv = ["biobert_ner.py", "--skip_test", "--out", "/content/biobert_dev_run"]
 
 """BioBERT fine-tuning for BC5CDR (Chemical / Disease NER). Colab-ready, SINGLE FILE.
 
 (ner_metrics.py is now built in, so nothing else needs to be uploaded.)
 
-Full run   : python biobert_ner.py
-Live demo  : python biobert_ner.py --epochs 1 --max_train 800 --out demo_run
+Run it by PASTING THIS FILE INTO A COLAB CELL (not with !python: Drive mounting needs the notebook kernel).
+Set options at the top of the cell, e.g.
+    import sys
+    sys.argv = ["biobert_ner.py", "--out", "/content/drive/MyDrive/biobert_run"]
 
-In Colab/Jupyter, run it as a shell command:  !python biobert_ner.py --epochs 1 --max_train 800 --out demo_run
+Drive: mounted automatically at the start (script stops if the mount failed) and flushed + unmounted at the
+end, even if the run crashes, so pending writes reach Drive. GPU memory is freed at the end too.
+
+Part 3 options:
+  --replace p  --mask p   rare-entity intervention, resampled every epoch (see augment()).
+                          replace = swap a mention for another same-type string drawn uniformly over DISTINCT
+                          training strings (rare strings as likely as common ones); mask = hide a mention behind
+                          [MASK] sub-words so the tag must come from context (simulates an unseen name).
+  --skip_test             train + select on dev only; do NOT score the test set (use for every experiment)
+  --eval_only             load <out>/model and score it without training. Add --skip_test to score dev only
+                          (an existing test result in biobert_metrics.json is kept); leave it off ONCE for final models.
+  dev predictions are saved too (biobert_dev_pred.json) for freq_length_analysis.py --pred_file
 
 Outputs (under --out):
   model/                       best model by dev F1 (reload with BertForTokenClassification)
   training_log.json            per-epoch train loss + dev P/R/F1
   biobert_metrics.json         dev + test metrics, same layout as crf_metrics.json
   biobert_test_predictions.json  [{tokens, gold, pred}] same layout as crf_test_predictions.json
+  biobert_dev_pred.json        one predicted tag list per dev sentence
 """
 import argparse
+import gc
 import json
 import os
 import random
@@ -32,6 +43,12 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from transformers import BertForTokenClassification, BertTokenizerFast, get_linear_schedule_with_warmup
+
+try:  # only on Google Colab: persist results on Drive
+    from google.colab import drive
+    IN_COLAB = True
+except ImportError:
+    IN_COLAB = False
 
 BASE = "https://huggingface.co/datasets/tner/bc5cdr/resolve/main/dataset/"
 FILES = {"train": "train.json", "dev": "valid.json", "test": "test.json"}
@@ -141,12 +158,39 @@ def fetch(raw_dir="data_raw"):
     return splits, label2id, id2label
 
 
-def encode(sents, tok, label2id, max_len):
-    """Word-level tags -> subword inputs. Label goes on the FIRST subword of each word, -100 elsewhere."""
+def entity_inventory(train):
+    """type -> list of DISTINCT training entity strings (token lists): uniform sampling over strings."""
+    inv = {}
+    for s in train:
+        for t, a, b in get_entities(s["tags"]):
+            inv.setdefault(t, {}).setdefault(" ".join(s["tokens"][a:b]).lower(), s["tokens"][a:b])
+    return {t: list(v.values()) for t, v in inv.items()}
+
+
+def augment(sent, rng, inv, p_rep, p_mask):
+    """Training-time rare-entity intervention. Returns (sentence, set of word indices to [MASK])."""
+    toks, tags = sent["tokens"], sent["tags"]
+    new_t, new_g, pos, masked = [], [], 0, set()
+    for t, a, b in get_entities(tags):
+        new_t += toks[pos:a]; new_g += tags[pos:a]
+        rep = rng.choice(inv[t]) if rng.random() < p_rep else toks[a:b]
+        start = len(new_t)
+        new_t += rep; new_g += [f"B-{t}"] + [f"I-{t}"] * (len(rep) - 1); pos = b
+        if rng.random() < p_mask:
+            masked.update(range(start, start + len(rep)))
+    return {"tokens": new_t + toks[pos:], "tags": new_g + tags[pos:]}, masked
+
+
+def encode(sents, tok, label2id, max_len, masks=None):
+    """Word-level tags -> subword inputs. Label goes on the FIRST subword of each word, -100 elsewhere.
+    masks (optional): per-sentence set of word indices whose sub-words are replaced by [MASK]."""
     out = []
-    for s in sents:
+    for si, s in enumerate(sents):
         enc = tok(s["tokens"], is_split_into_words=True, truncation=True, max_length=max_len)
         wids, labels, first = enc.word_ids(), [], []
+        if masks is not None and masks[si]:
+            enc["input_ids"] = [tok.mask_token_id if (w is not None and w in masks[si]) else t
+                                for t, w in zip(enc["input_ids"], wids)]
         prev = None
         for pos, w in enumerate(wids):
             if w is None or w == prev:
@@ -207,8 +251,15 @@ def main():
     ap.add_argument("--wd", type=float, default=0.01)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--max_train", type=int, default=0, help="use only the first N train sentences (live demo)")
-    ap.add_argument("--out", default="biobert_run")
+    ap.add_argument("--out", default="/content/drive/MyDrive/biobert_run" if IN_COLAB else "biobert_run")
+    ap.add_argument("--replace", type=float, default=0.0, help="intervention: mention replacement prob")
+    ap.add_argument("--mask", type=float, default=0.0, help="intervention: mention [MASK] prob")
+    ap.add_argument("--skip_test", action="store_true", help="do not score the test set")
+    ap.add_argument("--eval_only", action="store_true", help="score the saved model in --out/model, no training")
     a, _ = ap.parse_known_args()  # tolerant of extra args injected by notebooks
+    if IN_COLAB:
+        drive.mount("/content/drive")
+        assert os.path.isdir("/content/drive/MyDrive"), "Drive not mounted, stop and fix this first"
 
     random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -225,21 +276,35 @@ def main():
     model = BertForTokenClassification.from_pretrained(
         a.model, num_labels=len(label2id), id2label=id2label, label2id=label2id).to(device)
 
-    loader = DataLoader(enc["train"], batch_size=a.batch, shuffle=True,
-                        collate_fn=lambda b: collate(b, tok.pad_token_id))
+    inv, rng = entity_inventory(splits["train"]), random.Random(a.seed)
+    intervene = a.replace > 0 or a.mask > 0
+    if intervene:
+        print(f"intervention ON: replace={a.replace} mask={a.mask}")
+
+    def make_loader():  # with the intervention every epoch sees a freshly augmented copy of the training set
+        data = enc["train"]
+        if intervene:
+            aug = [augment(s, rng, inv, a.replace, a.mask) for s in splits["train"]]
+            data = encode([x[0] for x in aug], tok, label2id, a.max_len, [x[1] for x in aug])
+        return DataLoader(data, batch_size=a.batch, shuffle=True, collate_fn=lambda b: collate(b, tok.pad_token_id))
+
+    n_epochs = 0 if a.eval_only else a.epochs   # a.epochs stays untouched so the metrics file records the real value
+    loader = make_loader()
     no_decay = ["bias", "LayerNorm.weight"]
     groups = [
         {"params": [p for n, p in model.named_parameters() if not any(x in n for x in no_decay)], "weight_decay": a.wd},
         {"params": [p for n, p in model.named_parameters() if any(x in n for x in no_decay)], "weight_decay": 0.0},
     ]
     opt = torch.optim.AdamW(groups, lr=a.lr)
-    total = len(loader) * a.epochs
+    total = len(loader) * n_epochs
     sched = get_linear_schedule_with_warmup(opt, int(a.warmup * total), total)
     use_amp = device == "cuda"
-    scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+    scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
 
     log, best_f1 = [], -1.0
-    for ep in range(1, a.epochs + 1):
+    for ep in range(1, n_epochs + 1):
+        if intervene:
+            loader = make_loader()
         model.train()
         t0, run_loss = time.time(), 0.0
         for step, (ids, att, lab) in enumerate(loader, 1):
@@ -253,7 +318,7 @@ def main():
             scaler.step(opt); scaler.update(); sched.step()
             run_loss += loss.item()
             if step % 50 == 0 or step == len(loader):
-                print(f"epoch {ep}/{a.epochs} step {step}/{len(loader)} loss {run_loss / step:.4f}", flush=True)
+                print(f"epoch {ep}/{n_epochs} step {step}/{len(loader)} loss {run_loss / step:.4f}", flush=True)
         _, dev_res = evaluate(model, enc["dev"], splits["dev"], id2label, tok.pad_token_id, device)
         o = dev_res["overall"]
         print(f"== epoch {ep}: train loss {run_loss / len(loader):.4f} | dev P {o['precision']:.4f} "
@@ -266,25 +331,47 @@ def main():
             tok.save_pretrained(os.path.join(a.out, "model"))
             print("   saved best model", flush=True)
 
-    json.dump({"args": vars(a), "log": log}, open(os.path.join(a.out, "training_log.json"), "w"), indent=2)
+    if not a.eval_only:
+        json.dump({"args": vars(a), "log": log}, open(os.path.join(a.out, "training_log.json"), "w"), indent=2)
 
-    # final: reload best-on-dev model, score dev and test once
+    # final: reload best-on-dev model, score dev (and test unless --skip_test)
+    metrics_path = os.path.join(a.out, "biobert_metrics.json")
+    old_test = None
+    if a.eval_only and a.skip_test and os.path.exists(metrics_path):   # keep an existing test result for this same model
+        old_test = json.load(open(metrics_path)).get("test")
     model = BertForTokenClassification.from_pretrained(os.path.join(a.out, "model")).to(device)
-    _, dev_res = evaluate(model, enc["dev"], splits["dev"], id2label, tok.pad_token_id, device)
-    test_pred, test_res = evaluate(model, enc["test"], splits["test"], id2label, tok.pad_token_id, device)
-    print("\nTest results (entity level, exact span + type match)")
-    print(ner_report(test_res))
-    o = test_res["overall"]
-    print(f"Overall P={o['precision']:.4f} R={o['recall']:.4f} F1={o['f1']:.4f}")
-
-    json.dump({"model": a.model, "lr": a.lr, "batch": a.batch, "epochs": a.epochs, "max_len": a.max_len,
-               "dev": dev_res, "test": test_res}, open(os.path.join(a.out, "biobert_metrics.json"), "w"), indent=2)
-    json.dump([{"tokens": s["tokens"], "gold": s["tags"], "pred": p} for s, p in zip(splits["test"], test_pred)],
-              open(os.path.join(a.out, "biobert_test_predictions.json"), "w"))
+    dev_pred, dev_res = evaluate(model, enc["dev"], splits["dev"], id2label, tok.pad_token_id, device)
+    o = dev_res["overall"]
+    print(f"\nBest model on DEV: P={o['precision']:.4f} R={o['recall']:.4f} F1={o['f1']:.4f}")
+    json.dump(dev_pred, open(os.path.join(a.out, "biobert_dev_pred.json"), "w"))   # one tag list per dev sentence
+    test_res = old_test
+    if not a.skip_test:   # the single, final test evaluation
+        test_pred, test_res = evaluate(model, enc["test"], splits["test"], id2label, tok.pad_token_id, device)
+        print("\nTest results (entity level, exact span + type match)")
+        print(ner_report(test_res))
+        o = test_res["overall"]
+        print(f"Overall P={o['precision']:.4f} R={o['recall']:.4f} F1={o['f1']:.4f}")
+        json.dump([{"tokens": s["tokens"], "gold": s["tags"], "pred": p} for s, p in zip(splits["test"], test_pred)],
+                  open(os.path.join(a.out, "biobert_test_predictions.json"), "w"))
+    json.dump({"model": a.model, "lr": a.lr, "batch": a.batch, "epochs": a.epochs, "max_len": a.max_len, "seed": a.seed,
+               "replace": a.replace, "mask": a.mask, "dev": dev_res, "test": test_res},
+              open(metrics_path, "w"), indent=2)
     print("saved to", a.out)
+
+    # cleanup: free GPU memory
+    del model, loader, opt, sched, enc
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 if __name__ == "__main__":
-    main()
-    drive.flush_and_unmount()   # forces all pending writes to reach Drive
-    print("Drive flushed")
+    try:
+        main()
+    finally:   # runs even if main() crashes, so whatever was written still reaches Drive
+        if IN_COLAB:
+            try:
+                drive.flush_and_unmount()   # forces all pending writes to reach Drive, then unmounts
+                print("Drive flushed and unmounted")
+            except Exception as e:
+                print("Drive flush skipped:", e)
