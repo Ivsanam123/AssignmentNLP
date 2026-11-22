@@ -1,0 +1,133 @@
+== ImprovedCRF on DEV (test set not used) ==
+gold mentions 9591, predicted 8996, entity-level P 0.8582  R 0.8049  F1 0.8307
+dev mentions whose exact string is unseen in train: 36.6%
+
+-- Recall by training frequency of the exact (lower-cased, same-type) string
+           bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+    unseen (0)    3513     2030   0.578   0.560    0.596    1483       36.628             79.262
+    rare (1-4)    1689     1506   0.892   0.875    0.907     183       17.610              9.781
+ medium (5-19)    2945     2790   0.947   0.938    0.956     155       30.706              8.284
+frequent (20+)    1444     1394   0.965   0.956    0.974      50       15.056              2.672
+
+-- Recall by entity length
+      bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+  1 token    7408     6172   0.833   0.823    0.843    1236       77.239             66.061
+ 2 tokens    1658     1278   0.771   0.749    0.793     380       17.287             20.310
+ 3 tokens     383      238   0.621   0.571    0.676     145        3.993              7.750
+4+ tokens     142       32   0.225   0.151    0.300     110        1.481              5.879
+
+-- Recall by novelty of the string (OOV = a word never seen in train text)
+                        bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+                seen string    6078     5690   0.936   0.929    0.943     388       63.372             20.738
+ unseen string, known words    1033      488   0.472   0.440    0.504     545       10.771             29.129
+unseen string, has OOV word    2480     1542   0.622   0.600    0.643     938       25.858             50.134
+
+-- Recall: acronym vs not
+        bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+    acronym    1141      677   0.593   0.560    0.626     464       11.897               24.8
+not acronym    8450     7043   0.833   0.824    0.843    1407       88.103               75.2
+
+-- Recall by type
+     bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+Chemical    5347     4562   0.853   0.842    0.864     785        55.75             41.956
+ Disease    4244     3158   0.744   0.731    0.758    1086        44.25             58.044
+
+-- Recall for seen vs unseen strings at each length
+ group   len_bin  n_gold  recall
+  seen   1 token    5215   0.935
+  seen  2 tokens     754   0.943
+  seen  3 tokens     105   0.924
+  seen 4+ tokens       4   1.000
+unseen   1 token    2193   0.590
+unseen  2 tokens     904   0.627
+unseen  3 tokens     278   0.507
+unseen 4+ tokens     138   0.203
+
+-- Frequency x length: recall
+len_bin         1 token  2 tokens  3 tokens  4+ tokens
+freq_bin                                              
+unseen (0)        0.590     0.627     0.507      0.203
+rare (1-4)        0.871     0.962     0.930      1.000
+medium (5-19)     0.952     0.921     0.917        NaN
+frequent (20+)    0.965     0.967       NaN        NaN
+
+-- Frequency x length: number of gold mentions
+len_bin         1 token  2 tokens  3 tokens  4+ tokens
+freq_bin                                              
+unseen (0)         2193       904       278        138
+rare (1-4)         1288       340        57          4
+medium (5-19)      2543       354        48          0
+frequent (20+)     1384        60         0          0
+
+-- Outcome mix (%) by frequency bin
+outcome         correct  boundary error  boundary+type  type error  missed
+freq_bin                                                                  
+unseen (0)         57.8            10.0            1.1         0.9    30.2
+rare (1-4)         89.2             4.7            0.3         0.5     5.4
+medium (5-19)      94.7             3.5            0.3         0.0     1.5
+frequent (20+)     96.5             2.8            0.2         0.0     0.5
+
+-- Outcome mix (%) by length bin
+outcome    correct  boundary error  boundary+type  type error  missed
+len_bin                                                              
+1 token       83.3             3.2            0.4         0.5    12.5
+2 tokens      77.1            11.6            0.5         0.1    10.7
+3 tokens      62.1            21.4            1.0         0.5    14.9
+4+ tokens     22.5            43.0            6.3         0.0    28.2
+
+-- Precision of PREDICTED entities by training frequency of predicted string
+                n_pred  precision
+freq_bin                         
+unseen (0)        2971      0.683
+rare (1-4)        1656      0.909
+medium (5-19)     2924      0.954
+frequent (20+)    1445      0.965
+
+-- Precision of PREDICTED entities by length
+           n_pred  precision
+len_bin                     
+1 token      6793      0.909
+2 tokens     1710      0.747
+3 tokens      372      0.640
+4+ tokens     121      0.264
+
+-- AUC for 'will this gold entity be recognised?': length only 0.578 | frequency only 0.784 | both 0.790
+-- Logistic regression odds ratios (>1 helps, <1 hurts; 95% sentence-bootstrap CI)
+                    factor  odds_ratio  ci_low  ci_high
+   unseen string (vs seen)       0.105   0.090    0.120
++1 token of length (1->4+)       0.838   0.768    0.912
+     Disease (vs Chemical)       0.413   0.364    0.468
+                   acronym       0.291   0.252    0.338
+
+-- Headroom
+overall recall if unseen recall +10 pts: 0.8415
+overall recall if unseen recall = recall of frequent strings: 0.9469
+overall recall if 4+ token recall = 2-3 token recall: 0.8126
+
+-- 25 most frequently missed/wrong gold strings (dev)
+string        type    
+pb            Chemical    13
+cs            Chemical    13
+ammonia       Chemical    13
+af            Disease     13
+ischemic      Disease     12
+t             Chemical    12
+oab           Disease     11
+cb 3717       Chemical    11
+pregs         Chemical    11
+serotonin     Chemical    11
+edema         Disease     10
+oct           Chemical    10
+gtn           Chemical     9
+rubella       Disease      9
+ntg           Chemical     9
+den           Chemical     9
+lead          Chemical     9
+p             Chemical     9
+nms           Disease      9
+mesna         Chemical     9
+parkinsonian  Disease      9
+hepatitis b   Disease      8
+sah           Disease      8
+startle       Disease      8
+etoricoxib    Chemical     8

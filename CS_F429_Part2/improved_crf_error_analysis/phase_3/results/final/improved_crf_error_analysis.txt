@@ -1,0 +1,17 @@
+DEV: gold mentions gained / lost by the intervention, by training frequency of the string
+bin            gained   lost   net
+unseen            203     67   136
+rare 1-4          141     27   114
+medium 5-19        28     44   -16
+frequent 20+        4     24   -20
+total gained 376, lost 162
+
+False positives added / removed, by training frequency of the predicted string
+unseen        added  405  removed  157
+rare 1-4      added   43  removed   18
+medium 5-19   added   12  removed   21
+frequent 20+  added    1  removed   30
+
+Most recovered strings (count of mentions): [(('mesna', 'Chemical'), 21), (('ouabain', 'Chemical'), 12), (('iron', 'Chemical'), 6), (('platelet aggregation', 'Disease'), 5), (('k', 'Chemical'), 5), (('hepatitis b', 'Disease'), 4), (('adr', 'Chemical'), 4), (('vt', 'Disease'), 4), (('cancer', 'Disease'), 4), (('qtp', 'Chemical'), 3), (('cin', 'Disease'), 3), (('triglycerides', 'Chemical'), 3)]
+Most newly lost strings: [(('serotonin', 'Chemical'), 6), (('hepatitis', 'Disease'), 6), (('parkinsonian', 'Disease'), 5), (('seizures', 'Disease'), 5), (('postoperative delirium', 'Disease'), 4), (('edema', 'Disease'), 4), (('pain', 'Disease'), 3), (('hit', 'Disease'), 3)]
+Most frequent new false positives: [(('td', 'Disease'), 7), (('aura', 'Disease'), 7), (('antithrombin', 'Chemical'), 6), (("parkinsonian '", 'Disease'), 6), (('contrast medium', 'Chemical'), 5), ((',-', 'Chemical'), 5), (('hepatitis b immune globulin', 'Disease'), 4), (('glucagon', 'Chemical'), 4), (('hyperplasia', 'Disease'), 3), (('dependence', 'Disease'), 3), (('fluids', 'Chemical'), 3), (('delirium', 'Disease'), 3)]
