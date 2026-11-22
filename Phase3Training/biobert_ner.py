@@ -1,36 +1,17 @@
-
 import sys
-sys.argv = ["biobert_ner.py", "--skip_test", "--out", "/content/biobert_dev_run"]
+# ---- CHOOSE THE RUN HERE (change only this word, then run the cell) -------------------------------
+RUN = "replace_only"      # "replace_only" | "mask_only" | "rare" (replace + mask) | "baseline"
+USE_DRIVE = False         # False = save under /content and auto-download the 3 JSONs (no Drive needed)
+# ---------------------------------------------------------------------------------------------------
+D = "/content/drive/MyDrive/" if USE_DRIVE else "/content/"
+PRESETS = {
+    "baseline":     ["--skip_test", "--out", D + "biobert_dev_baseline"],
+    "replace_only": ["--replace", "0.7", "--skip_test", "--out", D + "biobert_replace_only"],
+    "mask_only":    ["--mask", "0.3", "--skip_test", "--out", D + "biobert_mask_only"],
+    "rare":         ["--replace", "0.7", "--mask", "0.3", "--skip_test", "--out", D + "biobert_rare"],
+}
+sys.argv = ["biobert_ner.py"] + PRESETS[RUN]
 
-"""BioBERT fine-tuning for BC5CDR (Chemical / Disease NER). Colab-ready, SINGLE FILE.
-
-(ner_metrics.py is now built in, so nothing else needs to be uploaded.)
-
-Run it by PASTING THIS FILE INTO A COLAB CELL (not with !python: Drive mounting needs the notebook kernel).
-Set options at the top of the cell, e.g.
-    import sys
-    sys.argv = ["biobert_ner.py", "--out", "/content/drive/MyDrive/biobert_run"]
-
-Drive: mounted automatically at the start (script stops if the mount failed) and flushed + unmounted at the
-end, even if the run crashes, so pending writes reach Drive. GPU memory is freed at the end too.
-
-Part 3 options:
-  --replace p  --mask p   rare-entity intervention, resampled every epoch (see augment()).
-                          replace = swap a mention for another same-type string drawn uniformly over DISTINCT
-                          training strings (rare strings as likely as common ones); mask = hide a mention behind
-                          [MASK] sub-words so the tag must come from context (simulates an unseen name).
-  --skip_test             train + select on dev only; do NOT score the test set (use for every experiment)
-  --eval_only             load <out>/model and score it without training. Add --skip_test to score dev only
-                          (an existing test result in biobert_metrics.json is kept); leave it off ONCE for final models.
-  dev predictions are saved too (biobert_dev_pred.json) for freq_length_analysis.py --pred_file
-
-Outputs (under --out):
-  model/                       best model by dev F1 (reload with BertForTokenClassification)
-  training_log.json            per-epoch train loss + dev P/R/F1
-  biobert_metrics.json         dev + test metrics, same layout as crf_metrics.json
-  biobert_test_predictions.json  [{tokens, gold, pred}] same layout as crf_test_predictions.json
-  biobert_dev_pred.json        one predicted tag list per dev sentence
-"""
 import argparse
 import gc
 import json
@@ -257,7 +238,7 @@ def main():
     ap.add_argument("--skip_test", action="store_true", help="do not score the test set")
     ap.add_argument("--eval_only", action="store_true", help="score the saved model in --out/model, no training")
     a, _ = ap.parse_known_args()  # tolerant of extra args injected by notebooks
-    if IN_COLAB:
+    if IN_COLAB and USE_DRIVE:
         drive.mount("/content/drive")
         assert os.path.isdir("/content/drive/MyDrive"), "Drive not mounted, stop and fix this first"
 
@@ -357,6 +338,10 @@ def main():
                "replace": a.replace, "mask": a.mask, "dev": dev_res, "test": test_res},
               open(metrics_path, "w"), indent=2)
     print("saved to", a.out)
+    if IN_COLAB and not USE_DRIVE:   # no Drive: download the three result files straight to your computer
+        from google.colab import files
+        for f in ("training_log.json", "biobert_metrics.json", "biobert_dev_pred.json"):
+            files.download(os.path.join(a.out, f))
 
     # cleanup: free GPU memory
     del model, loader, opt, sched, enc
@@ -369,7 +354,7 @@ if __name__ == "__main__":
     try:
         main()
     finally:   # runs even if main() crashes, so whatever was written still reaches Drive
-        if IN_COLAB:
+        if IN_COLAB and USE_DRIVE:
             try:
                 drive.flush_and_unmount()   # forces all pending writes to reach Drive, then unmounts
                 print("Drive flushed and unmounted")
