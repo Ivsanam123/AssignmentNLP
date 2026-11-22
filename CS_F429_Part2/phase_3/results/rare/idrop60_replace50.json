@@ -1,0 +1,33 @@
+{
+ "name": "idrop60_replace50",
+ "args": {
+  "cmd": "run",
+  "name": "idrop60_replace50",
+  "idrop": 0.6,
+  "replace": 0.5,
+  "rare": 0,
+  "k": 1,
+  "seed": 0
+ },
+ "n_train": 5228,
+ "n_aug": 5990,
+ "seconds": 47,
+ "dev": {
+  "precision": 0.8546569994422755,
+  "recall": 0.7988739443228027,
+  "f1": 0.8258245311489546,
+  "support": 9591,
+  "predicted": 8965,
+  "tp": 7662
+ },
+ "per_type": {
+  "Chemical": 0.8803118908382066,
+  "Disease": 0.7584378013500483
+ },
+ "recall_by_freq": {
+  "unseen": 0.5673213777398235,
+  "rare 1-4": 0.8762581409117821,
+  "frequent 20+": 0.9695290858725761,
+  "medium 5-19": 0.9470288624787776
+ }
+}
