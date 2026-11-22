@@ -1,6 +1,6 @@
 import sys
 # ---- CHOOSE THE RUN HERE (change only this word, then run the cell) -------------------------------
-RUN = "replace_only"      # "replace_only" | "mask_only" | "rare" (replace + mask) | "baseline"
+RUN = "demo"      # "replace_only" | "mask_only" | "rare" (replace + mask) | "baseline"
 USE_DRIVE = False         # False = save under /content and auto-download the 3 JSONs (no Drive needed)
 # ---------------------------------------------------------------------------------------------------
 D = "/content/drive/MyDrive/" if USE_DRIVE else "/content/"
