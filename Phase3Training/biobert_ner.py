@@ -1,14 +1,23 @@
+import os
 import sys
 # ---- CHOOSE THE RUN HERE (change only this word, then run the cell) -------------------------------
-RUN = "demo"      # "replace_only" | "mask_only" | "rare" (replace + mask) | "baseline"
+RUN = "demo"      # "demo" | "baseline" | "replace_only" | "mask_only" | "rare" (replace + mask) | "eval_baseline"
 USE_DRIVE = False         # False = save under /content and auto-download the 3 JSONs (no Drive needed)
 # ---------------------------------------------------------------------------------------------------
-D = "/content/drive/MyDrive/" if USE_DRIVE else "/content/"
+if USE_DRIVE:
+    D = "/content/drive/MyDrive/"
+elif os.path.isdir("/content"):      # Colab
+    D = "/content/"
+else:                                # laptop: save in the current folder
+    D = ""
 PRESETS = {
-    "baseline":     ["--skip_test", "--out", D + "biobert_dev_baseline"],
-    "replace_only": ["--replace", "0.7", "--skip_test", "--out", D + "biobert_replace_only"],
-    "mask_only":    ["--mask", "0.3", "--skip_test", "--out", D + "biobert_mask_only"],
-    "rare":         ["--replace", "0.7", "--mask", "0.3", "--skip_test", "--out", D + "biobert_rare"],
+    "demo":          ["--max_train", "800", "--epochs", "1", "--skip_test", "--out", D + "biobert_demo"],  # ~1 min, live demo
+    "baseline":      ["--skip_test", "--out", D + "biobert_dev_baseline"],
+    "replace_only":  ["--replace", "0.7", "--skip_test", "--out", D + "biobert_replace_only"],
+    "mask_only":     ["--mask", "0.3", "--skip_test", "--out", D + "biobert_mask_only"],
+    "rare":          ["--replace", "0.7", "--mask", "0.3", "--skip_test", "--out", D + "biobert_rare"],
+    # re-score the saved baseline model (needs USE_DRIVE = True and <Drive>/biobert_run/model); scores TEST once
+    "eval_baseline": ["--eval_only", "--out", D + "biobert_run"],
 }
 sys.argv = ["biobert_ner.py"] + PRESETS[RUN]
 
