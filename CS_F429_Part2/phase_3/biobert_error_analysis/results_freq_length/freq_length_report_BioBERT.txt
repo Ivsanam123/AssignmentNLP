@@ -1,0 +1,133 @@
+== BioBERT on DEV (test set not used) ==
+gold mentions 9591, predicted 9844, entity-level P 0.8884  R 0.9118  F1 0.8999
+dev mentions whose exact string is unseen in train: 36.6%
+
+-- Recall by training frequency of the exact (lower-cased, same-type) string
+           bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+    unseen (0)    3513     2890   0.823   0.808    0.836     623       36.628             73.641
+    rare (1-4)    1689     1609   0.953   0.942    0.962      80       17.610              9.456
+ medium (5-19)    2945     2839   0.964   0.956    0.971     106       30.706             12.530
+frequent (20+)    1444     1407   0.974   0.965    0.982      37       15.056              4.374
+
+-- Recall by entity length
+      bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+  1 token    7408     6977   0.942   0.936    0.947     431       77.239             50.946
+ 2 tokens    1658     1420   0.856   0.838    0.874     238       17.287             28.132
+ 3 tokens     383      291   0.760   0.719    0.803      92        3.993             10.875
+4+ tokens     142       57   0.401   0.320    0.484      85        1.481             10.047
+
+-- Recall by novelty of the string (OOV = a word never seen in train text)
+                        bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+                seen string    6078     5855   0.963   0.958    0.968     223       63.372             26.359
+ unseen string, known words    1033      699   0.677   0.646    0.710     334       10.771             39.480
+unseen string, has OOV word    2480     2191   0.883   0.870    0.897     289       25.858             34.161
+
+-- Recall: acronym vs not
+        bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+    acronym    1141     1071   0.939   0.922    0.955      70       11.897              8.274
+not acronym    8450     7674   0.908   0.901    0.915     776       88.103             91.726
+
+-- Recall by type
+     bin  n_gold  correct  recall  ci_low  ci_high  errors  pct_of_gold  pct_of_all_errors
+Chemical    5347     5138   0.961   0.955    0.967     209        55.75             24.704
+ Disease    4244     3607   0.850   0.838    0.862     637        44.25             75.296
+
+-- Recall for seen vs unseen strings at each length
+ group   len_bin  n_gold  recall
+  seen   1 token    5215   0.964
+  seen  2 tokens     754   0.958
+  seen  3 tokens     105   0.981
+  seen 4+ tokens       4   1.000
+unseen   1 token    2193   0.890
+unseen  2 tokens     904   0.772
+unseen  3 tokens     278   0.676
+unseen 4+ tokens     138   0.384
+
+-- Frequency x length: recall
+len_bin         1 token  2 tokens  3 tokens  4+ tokens
+freq_bin                                              
+unseen (0)        0.890     0.772     0.676      0.384
+rare (1-4)        0.950     0.956     0.982      1.000
+medium (5-19)     0.965     0.952     0.979        NaN
+frequent (20+)    0.973     1.000       NaN        NaN
+
+-- Frequency x length: number of gold mentions
+len_bin         1 token  2 tokens  3 tokens  4+ tokens
+freq_bin                                              
+unseen (0)         2193       904       278        138
+rare (1-4)         1288       340        57          4
+medium (5-19)      2543       354        48          0
+frequent (20+)     1384        60         0          0
+
+-- Outcome mix (%) by frequency bin
+outcome         correct  boundary error  boundary+type  type error  missed
+freq_bin                                                                  
+unseen (0)         82.3             8.5            0.1         0.3     8.9
+rare (1-4)         95.3             2.4            0.0         0.1     2.2
+medium (5-19)      96.4             2.0            0.3         0.1     1.2
+frequent (20+)     97.4             2.3            0.1         0.0     0.2
+
+-- Outcome mix (%) by length bin
+outcome    correct  boundary error  boundary+type  type error  missed
+len_bin                                                              
+1 token       94.2             2.2            0.1         0.1     3.4
+2 tokens      85.6             8.9            0.5         0.1     4.8
+3 tokens      76.0            16.7            0.0         0.0     7.3
+4+ tokens     40.1            38.7            0.7         0.0    20.4
+
+-- Precision of PREDICTED entities by training frequency of predicted string
+                n_pred  precision
+freq_bin                         
+unseen (0)        3758      0.769
+rare (1-4)        1696      0.949
+medium (5-19)     2949      0.963
+frequent (20+)    1441      0.976
+
+-- Precision of PREDICTED entities by length
+           n_pred  precision
+len_bin                     
+1 token      7674      0.909
+2 tokens     1695      0.838
+3 tokens      370      0.786
+4+ tokens     105      0.543
+
+-- AUC for 'will this gold entity be recognised?': length only 0.657 | frequency only 0.713 | both 0.744
+-- Logistic regression odds ratios (>1 helps, <1 hurts; 95% sentence-bootstrap CI)
+                    factor  odds_ratio  ci_low  ci_high
+   unseen string (vs seen)       0.199   0.163    0.233
++1 token of length (1->4+)       0.693   0.622    0.769
+     Disease (vs Chemical)       0.285   0.229    0.342
+                   acronym       1.387   1.010    2.016
+
+-- Headroom
+overall recall if unseen recall +10 pts: 0.9484
+overall recall if unseen recall = recall of frequent strings: 0.9674
+overall recall if 4+ token recall = 2-3 token recall: 0.9183
+
+-- 25 most frequently missed/wrong gold strings (dev)
+string                          type    
+ischemic                        Disease     11
+hepatitis b                     Disease     11
+toxicity                        Disease      9
+startle                         Disease      8
+depression                      Disease      8
+narcosis                        Disease      7
+cocs                            Chemical     7
+epileptic                       Disease      7
+analgesia                       Disease      6
+seizures                        Disease      6
+cytotoxicity                    Disease      6
+contralateral rotation          Disease      6
+ischemia                        Disease      6
+serotonin                       Chemical     6
+neuroleptic malignant syndrome  Disease      6
+cyp                             Chemical     6
+corticosteroids                 Chemical     5
+sexual side effects             Disease      5
+macrolide                       Chemical     5
+mcao                            Disease      5
+timolol                         Chemical     5
+epileptiform activity           Disease      5
+dyskinetic                      Disease      5
+metastases                      Disease      5
+tic-like symptoms               Disease      5

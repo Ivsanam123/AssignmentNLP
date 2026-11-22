@@ -1,0 +1,33 @@
+{
+ "name": "replace_p50_k1",
+ "args": {
+  "cmd": "run",
+  "name": "replace_p50_k1",
+  "idrop": 0.0,
+  "replace": 0.5,
+  "rare": 0,
+  "k": 1,
+  "seed": 0
+ },
+ "n_train": 5228,
+ "n_aug": 2840,
+ "seconds": 37,
+ "dev": {
+  "precision": 0.8716077537058152,
+  "recall": 0.7969971848608071,
+  "f1": 0.832634388105223,
+  "support": 9591,
+  "predicted": 8770,
+  "tp": 7644
+ },
+ "per_type": {
+  "Chemical": 0.8855770173546427,
+  "Disease": 0.7664788042146533
+ },
+ "recall_by_freq": {
+  "unseen": 0.547395388556789,
+  "rare 1-4": 0.8934280639431617,
+  "frequent 20+": 0.9709141274238227,
+  "medium 5-19": 0.9541595925297114
+ }
+}

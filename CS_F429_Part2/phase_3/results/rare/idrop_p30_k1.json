@@ -1,0 +1,33 @@
+{
+ "name": "idrop_p30_k1",
+ "args": {
+  "cmd": "run",
+  "name": "idrop_p30_k1",
+  "idrop": 0.3,
+  "replace": 0.0,
+  "rare": 0,
+  "k": 1,
+  "seed": 0
+ },
+ "n_train": 5228,
+ "n_aug": 2013,
+ "seconds": 35,
+ "dev": {
+  "precision": 0.859790766431658,
+  "recall": 0.788343238452716,
+  "f1": 0.8225183573565407,
+  "support": 9591,
+  "predicted": 8794,
+  "tp": 7561
+ },
+ "per_type": {
+  "Chemical": 0.880346081997837,
+  "Disease": 0.7509130752373996
+ },
+ "recall_by_freq": {
+  "unseen": 0.5627668659265584,
+  "rare 1-4": 0.8247483718176436,
+  "frequent 20+": 0.9722991689750693,
+  "medium 5-19": 0.9463497453310696
+ }
+}

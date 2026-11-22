@@ -1,0 +1,52 @@
+{
+  "args": {
+    "model": "dmis-lab/biobert-base-cased-v1.1",
+    "epochs": 4,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "warmup": 0.1,
+    "wd": 0.01,
+    "seed": 42,
+    "max_train": 0,
+    "out": "/content/biobert_mask_only",
+    "replace": 0.0,
+    "mask": 0.3,
+    "skip_test": true,
+    "eval_only": false
+  },
+  "log": [
+    {
+      "epoch": 1,
+      "train_loss": 0.27349256292350066,
+      "dev_precision": 0.9073457612072792,
+      "dev_recall": 0.8525701178187884,
+      "dev_f1": 0.8791055206149546,
+      "seconds": 64.35034942626953
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.04045043064890834,
+      "dev_precision": 0.8791308741788783,
+      "dev_recall": 0.9069961422166615,
+      "dev_f1": 0.8928461459509393,
+      "seconds": 65.15660500526428
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.021929302642304187,
+      "dev_precision": 0.9002501563477173,
+      "dev_recall": 0.9005317485142321,
+      "dev_f1": 0.9003909304143862,
+      "seconds": 66.13398623466492
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.01333151133043908,
+      "dev_precision": 0.8937153419593346,
+      "dev_recall": 0.9074131998748827,
+      "dev_f1": 0.9005121837653266,
+      "seconds": 65.19634366035461
+    }
+  ]
+}

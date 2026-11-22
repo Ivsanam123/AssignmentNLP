@@ -1,24 +1,3 @@
-"""Command-line demo: extract CHEMICAL and DISEASE mentions from biomedical text.
-
-Models:  crf (Part 2)  |  improved_crf (Part 3 augmentation)  |  biobert (fine-tuned)
-
-Usage:
-  python ner_cli.py --demo                                  # built-in sentences, original CRF
-  python ner_cli.py --demo --compare                        # same sentences, all models side by side
-  python ner_cli.py --model biobert --text "Cisplatin caused nephrotoxicity."
-  python ner_cli.py --compare --text "Mesna protects against cystitis."
-  python ner_cli.py --file abstract.txt                     # tag a whole text file (sentence-split automatically)
-  echo "Aspirin can cause gastric ulcers." | python ner_cli.py
-  python ner_cli.py                                         # interactive prompt (empty line or Ctrl-D to quit)
-  python ner_cli.py --json --text "..."                     # machine-readable output
-  python ner_cli.py --retrain                               # retrain the CRF first (~25 s), then tag
-
-Model files:
-  CRF           models/crf_bc5cdr.crfsuite   (created by `python crf_baseline.py`; trained automatically if missing)
-  improved CRF  --improved_crf PATH          (default models/crf_improved.crfsuite)
-  BioBERT       --biobert_dir DIR            (default models/biobert; the folder with config.json + model.safetensors)
-With --compare, a model whose files are missing is skipped with a note instead of stopping the demo.
-"""
 import argparse
 import json
 import os
@@ -28,12 +7,11 @@ import time
 
 import crf_baseline as cb
 
+IMPROVED_PATH = os.path.join(cb.HERE, "models", "crf_rare_idrop60_replace70.crfsuite")
+BIOBERT_DIR = os.path.join(cb.HERE, "models", "biobert")
+
 COLORS = {"Chemical": "\033[92m", "Disease": "\033[91m"}  # green, red
 RESET = "\033[0m"
-LABELS = {"crf": "CRF", "improved_crf": "Improved CRF", "biobert": "BioBERT"}
-ALL_MODELS = ["crf", "improved_crf", "biobert"]
-DEFAULT_IMPROVED = os.path.join(cb.HERE, "models", "crf_improved.crfsuite")
-DEFAULT_BIOBERT = os.path.join(cb.HERE, "models", "biobert")
 
 DEMO_SENTENCES = [
     "Naloxone reverses the antihypertensive effect of clonidine.",
@@ -43,12 +21,11 @@ DEMO_SENTENCES = [
     "Methotrexate-induced hepatotoxicity resolved after the dose was reduced.",
     "Lithium therapy may cause tremor, hypothyroidism and, rarely, seizures.",
     "Haloperidol was given to control agitation in a patient with Parkinson's disease.",
-    "Mesna was given to prevent ifosfamide-induced hemorrhagic cystitis.",
-    "Ouabain increased the force of cardiac contraction.",
+    "Mesna did not prevent ifosfamide-induced hemorrhagic cystitis in this patient.",       # rare / unseen-style names
+    "Ouabain-induced arrhythmia was reversed by lidocaine in the isolated heart.",
 ]
 
 SENT_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"'(])")
-WORD_RE = re.compile(r"\w+|[^\w\s]", re.UNICODE)   # word / punctuation tokens, like the BC5CDR word-level data
 
 
 def split_sentences(text):
@@ -61,83 +38,61 @@ def split_sentences(text):
     return [(s, o) for s, o in out if s.strip()]
 
 
-# ------------------------------------------------------------------ BioBERT tagger
-def bio_to_entities(tags, spans, sent):
-    """BIO tags per word + (start, end) char span per word -> [{type, text, start, end}]."""
-    ents, cur = [], None
-    for i, t in enumerate(list(tags) + ["O"]):
-        p, ty = (t.split("-", 1) + [""])[:2] if t != "O" else ("O", "")
-        if cur is not None and (p in ("B", "O") or (p == "I" and ty != cur[0])):
-            a, b = spans[cur[1]][0], spans[i - 1][1]
-            ents.append({"type": cur[0], "text": sent[a:b], "start": a, "end": b})
-            cur = None
-        if p == "B" or (p == "I" and cur is None and ty):
-            cur = (ty, i)
-    return ents
+class CRFTagger:
+    def __init__(self, crf, name):
+        self.crf, self.name = crf, name
+
+    def tag(self, sentence):
+        return cb.tag_text(self.crf, sentence)
 
 
 class BioBertTagger:
-    def __init__(self, model_dir):
-        if not os.path.isdir(model_dir):
-            raise FileNotFoundError(f"BioBERT folder not found: {model_dir}")
-        import torch
-        from transformers import BertForTokenClassification, BertTokenizerFast
-        self.torch = torch
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.tok = BertTokenizerFast.from_pretrained(model_dir, do_lower_case=False)
-        self.model = BertForTokenClassification.from_pretrained(model_dir).to(self.device).eval()
+    """Word-level BioBERT tagger: same word tokenisation as the CRF, label on the first sub-word of each word."""
+
+    def __init__(self, path, name="BioBERT"):
+        if not os.path.exists(os.path.join(path, "model.safetensors")) and not os.path.exists(
+                os.path.join(path, "pytorch_model.bin")):
+            raise FileNotFoundError(
+                f"No BioBERT weights in {path} (model.safetensors missing). The weights are not stored in git: "
+                "copy the 'model' folder written by biobert_ner.py (Colab) into models/biobert/.")
+        try:
+            import torch
+            from transformers import BertForTokenClassification, BertTokenizerFast
+        except ImportError as exc:
+            raise FileNotFoundError(f"BioBERT needs the 'torch' and 'transformers' packages ({exc}). "
+                                    "Install them with: pip install torch transformers") from exc
+        self.torch, self.name = torch, name
+        self.tok = BertTokenizerFast.from_pretrained(path, do_lower_case=False)
+        self.model = BertForTokenClassification.from_pretrained(path).eval()
         self.id2label = {int(k): v for k, v in self.model.config.id2label.items()}
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(self.device)
 
-    def __call__(self, sent):
-        spans = [(m.start(), m.end()) for m in WORD_RE.finditer(sent)]
-        if not spans:
+    def tag(self, sentence):
+        toks = cb.tokenize_with_offsets(sentence)
+        if not toks:
             return []
-        words = [sent[a:b] for a, b in spans]
+        words = [t[0] for t in toks]
         enc = self.tok(words, is_split_into_words=True, truncation=True, max_length=512, return_tensors="pt")
-        wids = enc.word_ids()
         with self.torch.no_grad():
-            pred = self.model(**{k: v.to(self.device) for k, v in enc.items()}).logits[0].argmax(-1).cpu().tolist()
+            logits = self.model(**{k: v.to(self.device) for k, v in enc.items()}).logits[0].argmax(-1).cpu()
         tags, prev = ["O"] * len(words), None
-        for pos, w in enumerate(wids):          # a word takes the label of its first sub-word
+        for pos, w in enumerate(enc.word_ids()):
             if w is not None and w != prev:
-                tags[w] = self.id2label[pred[pos]]
+                tags[w] = self.id2label[int(logits[pos])]
             prev = w
-        return bio_to_entities(tags, spans, sent)
+        ents = []
+        for typ, s, e in cb.ner_metrics.get_entities(tags):
+            cs, ce = toks[s][1], toks[e - 1][2]
+            if any(ch.isalnum() for ch in sentence[cs:ce]):
+                ents.append({"text": sentence[cs:ce], "type": typ, "start": cs, "end": ce})
+        return ents
 
 
-# ------------------------------------------------------------------ model loading
-def get_model(retrain):
-    if retrain or not os.path.exists(cb.MODEL_PATH):
-        print("Training CRF on BC5CDR train split (c1=0.1, c2=0.01) ...", flush=True)
-        t0 = time.time()
-        train = cb.load("train")
-        X, y = cb.featurize(train)
-        crf = cb.train_crf(X, y, model_filename=cb.MODEL_PATH)
-        print(f"Done in {time.time() - t0:.1f}s. Model saved to {os.path.relpath(cb.MODEL_PATH, cb.HERE)}\n")
-        return crf
-    return cb.load_model()
-
-
-def make_tagger(name, args):
-    """Return a function  sentence -> [entity dicts]  for the named model (raises if its files are missing)."""
-    if name == "crf":
-        crf = get_model(args.retrain)
-        return lambda s: cb.tag_text(crf, s)
-    if name == "improved_crf":
-        if not os.path.exists(args.improved_crf):
-            raise FileNotFoundError(f"improved CRF model not found: {args.improved_crf} (set --improved_crf)")
-        import sklearn_crfsuite
-        crf = sklearn_crfsuite.CRF(model_filename=args.improved_crf)
-        return lambda s: cb.tag_text(crf, s)
-    if name == "biobert":
-        return BioBertTagger(args.biobert_dir)
-    raise ValueError(name)
-
-
-def tag_document(tag_fn, text):
+def tag_document(tagger, text):
     ents = []
     for sent, off in split_sentences(text):
-        for e in tag_fn(sent):
+        for e in tagger.tag(sent):
             e = dict(e)
             e["start"] += off
             e["end"] += off
@@ -145,7 +100,6 @@ def tag_document(tag_fn, text):
     return ents
 
 
-# ------------------------------------------------------------------ display
 def mark(text, ents, color):
     """Return text with entities highlighted: ANSI colours or inline [TYPE] labels."""
     out, pos = [], 0
@@ -161,9 +115,12 @@ def mark(text, ents, color):
     return "".join(out)
 
 
-def show(text, ents, color):
-    print(f"\nText   : {text}")
-    print(f"Marked : {mark(text, ents, color)}")
+def show(text, ents, color, label=None, first=True):
+    if first:
+        print(f"\nText   : {text}")
+    print(f"Marked : {mark(text, ents, color)}" if label is None else f"{label:<13s}: {mark(text, ents, color)}")
+    if label is not None:
+        return                      # compare mode: one line per model
     if not ents:
         print("Entities: (none found)")
         return
@@ -174,48 +131,54 @@ def show(text, ents, color):
     print(f"  -> {n_c} chemical(s), {len(ents) - n_c} disease(s)")
 
 
-def show_compare(text, by_model, color):
-    print(f"\nText: {text}")
-    w = max(len(m) for m in by_model)
-    for name, ents in by_model.items():
-        found = "; ".join(f"{e['text']} [{e['type']}]" for e in sorted(ents, key=lambda x: x["start"])) or "(none)"
-        print(f"  {name:<{w}} : {mark(text, ents, color)}")
-        print(f"  {'':<{w}}   found: {found}")
+def get_crf(retrain):
+    if retrain or not os.path.exists(cb.MODEL_PATH):
+        print("Training CRF on BC5CDR train split (c1=0.1, c2=0.01) ...", flush=True)
+        t0 = time.time()
+        train = cb.load("train")
+        X, y = cb.featurize(train)
+        crf = cb.train_crf(X, y, model_filename=cb.MODEL_PATH)
+        print(f"Done in {time.time() - t0:.1f}s. Model saved to {os.path.relpath(cb.MODEL_PATH, cb.HERE)}\n")
+        return crf
+    return cb.load_model()
 
 
-# ------------------------------------------------------------------ main
+def load_taggers(which, retrain, biobert_dir):
+    """which: 'crf' | 'crf-improved' | 'biobert' | 'all' (skips models that are not available)."""
+    out = []
+    if which in ("crf", "all"):
+        out.append(CRFTagger(get_crf(retrain), "CRF"))
+    if which in ("crf-improved", "all"):
+        if os.path.exists(IMPROVED_PATH):
+            out.append(CRFTagger(cb.load_model(IMPROVED_PATH), "CRF improved"))
+        elif which != "all":
+            sys.exit(f"Improved CRF not found: {IMPROVED_PATH}\nCreate it with: python phase_3/rare_intervention.py "
+                     "run --name idrop60_replace70 --idrop 0.6 --replace 0.7")
+    if which in ("biobert", "all"):
+        try:
+            out.append(BioBertTagger(biobert_dir))
+        except FileNotFoundError as exc:
+            if which != "all":
+                sys.exit(str(exc))
+            print(f"[BioBERT skipped] {exc}\n")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--text", help="text to tag")
     ap.add_argument("--file", help="path of a UTF-8 text file to tag")
     ap.add_argument("--demo", action="store_true", help="tag built-in demo sentences")
-    ap.add_argument("--model", choices=ALL_MODELS, default="crf", help="which model tags the text (default: crf)")
-    ap.add_argument("--compare", action="store_true", help="run all models and show their output side by side")
-    ap.add_argument("--improved_crf", default=DEFAULT_IMPROVED, help="path of the improved CRF .crfsuite model")
-    ap.add_argument("--biobert_dir", default=DEFAULT_BIOBERT, help="folder of the fine-tuned BioBERT model")
     ap.add_argument("--json", action="store_true", help="print results as JSON")
-    ap.add_argument("--retrain", action="store_true", help="retrain the CRF before tagging")
+    ap.add_argument("--retrain", action="store_true", help="retrain the model before tagging")
     ap.add_argument("--color", choices=["auto", "on", "off"], default="auto")
+    ap.add_argument("--model", choices=["crf", "crf-improved", "biobert"], default="crf", help="which model to use")
+    ap.add_argument("--biobert-dir", default=BIOBERT_DIR, help="folder with the saved BioBERT checkpoint")
+    ap.add_argument("--compare", action="store_true", help="tag with every available model and show them together")
     args = ap.parse_args()
 
     color = args.color == "on" or (args.color == "auto" and sys.stdout.isatty() and os.name != "nt")
-
-    names = ALL_MODELS if args.compare else [args.model]
-    taggers = {}
-    for n in names:
-        try:
-            taggers[LABELS[n]] = make_tagger(n, args)
-        except Exception as exc:
-            if not args.compare:
-                sys.exit(f"Could not load {LABELS[n]}: {exc}")
-            print(f"[skipping {LABELS[n]}: {exc}]")
-    if not taggers:
-        sys.exit("No model could be loaded.")
-    if args.compare and len(taggers) > 1:
-        print("Models:", ", ".join(taggers), "\n")
-
-    def run(t):
-        return {name: tag_document(fn, t) for name, fn in taggers.items()}
+    taggers = load_taggers('all' if args.compare else args.model, args.retrain, args.biobert_dir)
 
     explicit = args.text is not None or args.file is not None or args.demo
     texts = []
@@ -243,22 +206,24 @@ def main():
     if texts:
         results = []
         for t in texts:
-            by_model = run(t)
-            if args.json:
-                if args.compare:
-                    results.append({"text": t, "models": by_model})
-                else:
-                    results.append({"text": t, "entities": next(iter(by_model.values()))})
-            elif args.compare:
-                show_compare(t, by_model, color)
+            if args.compare:
+                per = {tg.name: tag_document(tg, t) for tg in taggers}
+                results.append({"text": t, "entities": per})
+                if not args.json:
+                    for i, (nm, ents) in enumerate(per.items()):
+                        show(t, ents, color, label=nm, first=(i == 0))
             else:
-                show(t, next(iter(by_model.values())), color)
+                ents = tag_document(taggers[0], t)
+                results.append({"text": t, "model": taggers[0].name, "entities": ents})
+                if not args.json:
+                    show(t, ents, color)
         if args.json:
             print(json.dumps(results, indent=2, ensure_ascii=False))
         return
 
     # interactive
-    print(f"Biomedical NER (BC5CDR: Chemical / Disease) with {', '.join(taggers)}. Type a sentence; empty line to quit.")
+    names = ", ".join(tg.name for tg in taggers)
+    print(f"Biomedical NER ({names}; BC5CDR: Chemical / Disease). Type a sentence; empty line to quit.")
     while True:
         try:
             line = input("\n> ").strip()
@@ -267,11 +232,11 @@ def main():
             break
         if not line:
             break
-        by_model = run(line)
         if args.compare:
-            show_compare(line, by_model, color)
+            for i, tg in enumerate(taggers):
+                show(line, tag_document(tg, line), color, label=tg.name, first=(i == 0))
         else:
-            show(line, next(iter(by_model.values())), color)
+            show(line, tag_document(taggers[0], line), color)
 
 
 if __name__ == "__main__":

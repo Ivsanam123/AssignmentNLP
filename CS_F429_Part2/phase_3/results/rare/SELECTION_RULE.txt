@@ -1,0 +1,4 @@
+Fixed BEFORE any intervention result was seen (2026-11-22):
+Choose the configuration with the highest DEV recall on unseen entity strings among those whose DEV entity-level F1
+has F1 >= (base dev F1 - 0.003). Ties -> higher dev F1. Test set is evaluated once, for the chosen
+configuration and the original CRF only.
